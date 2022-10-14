@@ -95,6 +95,41 @@ if(isset($_GET['msg']))
 
  }
 }
+if(isset($_GET['msg']))
+ {
+    if($_GET['msg']== 3)
+    {
+        ?>
+
+                            <div class="container">
+								
+                                <div class="alert alert-success alert-dismissible fade show">
+									<button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
+									<strong>DATA HAS BEEN UPDATED</strong> 
+								</div>
+							</div>
+<?php
+
+ }
+}
+
+if(isset($_GET['msg']))
+ {
+    if($_GET['msg']== 3.1)
+    {
+        ?>
+
+                            <div class="container">
+								
+                                <div class="alert alert-success alert-dismissible fade show">
+									<button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
+									<strong>DATA HAS NOT UPDATED</strong> 
+								</div>
+							</div>
+<?php
+
+ }
+}
  ?>
  	<div style="padding: 2%;">
  	<table class="table table-bordered" id="example" style="width: 40%;">
@@ -116,8 +151,8 @@ if(isset($_GET['msg']))
 		 ?>
  			<tr><td> <?php echo " $unit_id"; ?></td>
  				<td><?php echo " $unit_name"; ?></td>
- 				<td><a  href=" unit_edit.php?unit_id=<?php echo $unit_id; ?> " class="btn btn-primary">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$unit_id"; ?>)"  class = "btn btn-danger">delete</a></td>
+ 				<td><a  onclick="myEdit(<?php echo "$unit_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
+ 				<td> <a onclick="myFun(<?php echo "$unit_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
 			</tr>
 	
 <?php 
@@ -170,7 +205,16 @@ $(document).ready(function() {
 		
     }
 </script>
+<script type="text/javascript">
 
+	function myEdit(uid){
+		var edit = confirm("ARE YOU SURE TO EDIT DATA");
+		if(edit){
+			window.location="update_unit.php?unit_id="+uid;
+		}
+		
+    }
+</script>
   
 </body>
 </html>
