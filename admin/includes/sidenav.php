@@ -19,15 +19,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_product.php">
+              <a class="nav-link" href="add_units.php">
                 <i class="fas fa-fw fa-align-justify text-orange"></i>
-                <span class="nav-link-text">ADD PRODUCTS</span>
+                <span class="nav-link-text">ADD UNITS</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="view_products.php">
+              <a class="nav-link" href="view_unit.php">
                 <i class="fas fa-fw fa-server text-green"></i>
-                <span class="nav-link-text">VIEW  PRODUCTS </span>
+                <span class="nav-link-text">VIEW  UNITS </span>
               </a>
             </li>
               <li class="nav-item">

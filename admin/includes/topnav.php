@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -54,22 +56,24 @@
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="assets/img/team-4.jpg">
                   </span>
-                <?php
-                /*
+                  
+                <?php 
+                
                 include('dbconnect.php');
-                //session_start();
+                
                 $admin_id = $_SESSION['admin_id'];
-               //$username = $_SESSION['username'];
+               
+               
                $query = "select username from admin_tbl where admin_id = '$admin_id'";
                $query_run = $link->query($query);
               while($rows = mysqli_fetch_array($query_run))
                {
                  $username=$rows['username'];
                }
-               */
+               
                 ?>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold"><?php  /*echo $username; */?></span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?php  echo $username; ?></span>
                   </div>
                 </div>
               </a>
