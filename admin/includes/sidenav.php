@@ -19,6 +19,18 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="add_tax.php">
+                <i class="fas fa-fw fa-align-justify text-orange"></i>
+                <span class="nav-link-text">ADD TAX</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="view_tax.php">
+                <i class="fas fa-fw fa-align-justify text-orange"></i>
+                <span class="nav-link-text">VIEW TAX</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="add_units.php">
                 <i class="fas fa-fw fa-align-justify text-orange"></i>
                 <span class="nav-link-text">ADD UNITS</span>
@@ -31,16 +43,16 @@
               </a>
             </li>
               <li class="nav-item">
-              <a class="nav-link" href="view_person_pa_detail.php">
+              <a class="nav-link" href="add_category.php">
                 <i class="fas fa-fw fa-server text-green"></i>
-                <span class="nav-link-text">VIEW ALL DETAILS </span>
+                <span class="nav-link-text">ADD CATEGORY </span>
               </a>
             </li>
          </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_supplier.php">
+              <a class="nav-link" href="view_category.php">
                 <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text">ADD SUPPLIER</span>
+                <span class="nav-link-text">VIEW CATEGORY</span>
               </a>
             </li>
             <li class="nav-item">
