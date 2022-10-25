@@ -56,9 +56,27 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="add_product.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">ADD PRODUCT</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="view_product.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">VIEW PRODUCT</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="add_supplier.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">ADD SUPPLIER</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="view_supplier.php">
                 <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text">view SUPPLIER</span>
+                <span class="nav-link-text">VIEW SUPPLIER</span>
               </a>
             </li>
             <li class="nav-item">

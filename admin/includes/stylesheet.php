@@ -15,4 +15,7 @@
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
  <link rel="stylesheet" href="bootstrap">
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" type="text/css">
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" type="text/css">
      
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" type="text/css">
+    
