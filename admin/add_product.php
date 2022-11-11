@@ -96,25 +96,30 @@
             }
 ?>
         </select><br>
-        <label>ENTER PRODUCT NAME:</label>
+        <label>SELECT SUPPLIER</label>
+        <select name="supplier_id">
+        <option value="" >-SELECT SUPPLIER-</option>
+<?php
+            $query = "select * from supplier_tbl where status ='0' and deleted = '0' ";
+            $query_result = $link->query($query);
+            while($rows = mysqli_fetch_array($query_result))
+            {
+              $supplier_id = $rows['supplier_id'];
+              $supplier_name =  $rows['supplier_name'];
+              ?>
+              <option value="<?php echo $supplier_id; ?> " ><?php echo $supplier_name; ?> </option>
+
+           
+            <?php
+            }
+?>
+        </select><br>
+                    <label>ENTER PRODUCT NAME:</label>
     				<input type="text" class="form-control" style="width:15%;" name="product_name" required>
                     <label>ENTER PACKING:</label>
     				<input type="text" class="form-control" style="width:15%;" name="packing" required>
                     <label>ENTER GENERIC NAME:</label>
     				<input type="text" class="form-control" style="width:15%;" name="generic_name" required>
-                    <label>ENTER EXPIRY DATE:</label>
-    				<input type="date" class="form-control" style="width:15%;" name="expiry_date" required>
-                    <label>ENTER QUANTITY:</label>
-    				<input type="number" class="form-control" style="width:15%;" name="quantity" required>
-                    <label>ENTER MRP:</label>
-    				<input type="number" class="form-control" style="width:15%;" name="mrp" required>
-                    <label>ENTER RATE:</label>
-    				<input type="number" class="form-control" style="width:15%;" name="rate" required>
-                    <label>ENTER PRODUCT DESCRIPTION:</label>
-    				<input type="text" class="form-control" style="width:15%;" name="product_description" required>
-                    <label>ENTER PRODUCT CODE:</label>
-    				<input type="number" class="form-control" style="width:15%;" name="product_code" required><br>
-                    
  					 <button type="submit" name="addproduct" class="btn btn-primary">ADD PRODUCT</button>
            <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>
            <br>

@@ -24,7 +24,7 @@
 
 <?php
 include("dbconnect.php");
-$query = "select  p.product_name,p.generic_name,p.created_date,p.packing,c.category_name,t.tax_name,t.tax_rate,u.unit_name,c.category_id,u.unit_id,t.tax_id,p.product_id,s.supplier_id,s.supplier_name from category_tbl c,unit_tbl u,tax_tbl t,product_tbl p,supplier_tbl s where p.supplier_id = s.supplier_id and p.category_id=c.category_id and p.unit_id=u.unit_id and p.tax_id=t.tax_id and c.deleted='0' and p.deleted='0' and u.deleted='0' and t.deleted='0'";
+$query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st where s.supplier_id = st.supplier_id and p.product_id=s.product_id and st.supplier_id=s.supplier_id and p.deleted='0' and st.deleted='0' and s.deleted='0'";
  $query_res = $link->query($query);
  if(isset($_GET['msg']))
  {
@@ -129,15 +129,15 @@ if(isset($_GET['msg']))
  	<div style="padding: 5%;">
  	<table class="table " id="example1" style="width: 40%;">
  			<thead class="table-dark"><tr>
-                        <th>TAX NAME</th>
-                        <th>TAX RATE</th>
-                        <th>UNIT NAME</th>
-                        <th>SUPPLIER NAME</th>
-                        <th>MEDICINE TYPE</th>
- 						<th>MEDICINE  NAME</th>
- 						<th>PACKING</th>
+                        <th>MEDICINE NAME</th>
+                        <th>PACKING</th>
                         <th>GENERIC NAME</th>
-                        <th>CREATED DATE</th>
+                        <th>BATCH ID</th>
+                        <th>EXPIRY DATE</th>
+ 						<th>SUPPLIER</th>
+ 						<th>QTY</th>
+                        <th>MRP</th>
+                        <th>PRICE</th>
                         <th>EDIT</th>
                         <th>DELETE</th>
  					</tr>
@@ -145,35 +145,31 @@ if(isset($_GET['msg']))
 		 <?php
  	 			while($rows = mysqli_fetch_array($query_res))
  	 			{
- 						$product_id = $rows['product_id'];
-                        $tax_name = $rows['tax_name'];
-                        $tax_rate = $rows['tax_rate'];
-                        $unit_name = $rows['unit_name'];
-                        $supplier_name = $rows['supplier_name'];
-                        $category_name = $rows['category_name'];
+ 						$stock_id = $rows['stock_id'];
  						$product_name = $rows["product_name"];
                         $packing = $rows['packing'];
                         $generic_name = $rows['generic_name'];
-                        //$status = $rows['status'];
-                        $created_date = $rows['created_date'];
-                        // $deleted = $rows['deleted'];
-                        // $inserted_by_id = $rows['inserted_by_id'];
-                        // $updated_by_id = $rows['updated_by_id'];
-                        // $deleted_by_id = $rows['deleted_by_id'];
+                        $batch_id = $rows['batch_number'];
+                        $expiry_date = $rows['expiry_date'];
+                        $supplier_name = $rows['supplier_name'];
+                        $qty = $rows['quantity'];
+                        $mrp = $rows['mrp'];
+                        $price = $rows['rate'];
+
 		 ?>
  			    <tr>
-                 <td><?php echo " $tax_name"; ?></td>
-                 <td><?php echo " $tax_rate"; ?></td>
-                 <td><?php echo " $unit_name"; ?></td>
-                 <td><?php echo " $supplier_name"; ?></td>
-                 <td><?php echo " $category_name"; ?></td>
                  <td><?php echo " $product_name"; ?></td>
-                 <td><?php echo "  $packing"; ?></td>
-                 <td><?php echo "  $generic_name"; ?></td>
-                 <td><?php echo " $created_date"; ?></td>
+                 <td><?php echo " $packing"; ?></td>
+                 <td><?php echo " $generic_name"; ?></td>
+                 <td><?php echo " $batch_id"; ?></td>
+                 <td><?php echo " $expiry_date"; ?></td>
+                 <td><?php echo " $supplier_name"; ?></td>
+                 <td><?php echo "  $qty"; ?></td>
+                 <td><?php echo "  $mrp"; ?></td>
+                 <td><?php echo " $price"; ?></td>
                 
- 				<td><a  onclick="myEdit(<?php echo "$product_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$product_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
+ 				<td><a  onclick="myEdit(<?php echo "$stock_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
+ 				<td> <a onclick="myFun(<?php echo "$stock_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
 			</tr>
 	
 <?php 
@@ -206,7 +202,7 @@ include('includes/script.php');
 
     function diss(){
 		
-			window.location="view_product.php";
+			window.location="view_stock.php";
 	
 		
     }

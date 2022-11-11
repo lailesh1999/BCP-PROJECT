@@ -56,18 +56,6 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_product.php">
-                <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text">ADD PRODUCT</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="view_product.php">
-                <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text">VIEW PRODUCT</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="add_supplier.php">
                 <i class="fas fa-fw fa-address-book text-pink"></i>
                 <span class="nav-link-text">ADD SUPPLIER</span>
@@ -77,6 +65,30 @@
               <a class="nav-link" href="view_supplier.php">
                 <i class="fas fa-fw fa-address-book text-pink"></i>
                 <span class="nav-link-text">VIEW SUPPLIER</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="add_product.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">ADD MEDICINE</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="view_product.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">VIEW MEDICINE</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="add_stock.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">ADD STOCK</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="view_stock.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">VIEW STOCK</span>
               </a>
             </li>
             <li class="nav-item">

@@ -35,16 +35,11 @@ include('secure.php');
                       $category_id=$rows['category_id'];
                       $unit_id=$rows['unit_id'];
                       $tax_id=$rows['tax_id'];
-                      $product_code = $rows['product_code'];
- 					  $product_name = $rows["product_name"];
+                      $supplier_id = $rows['supplier_id'];
+ 					            $product_name = $rows["product_name"];
                         $packing = $rows['packing'];
                         $generic_name = $rows['generic_name'];
-                        $expiry_date = $rows['expiry_date'];
-                        $quantity = $rows['quantity'];
-                        $mrp = $rows['mrp'];
-                        $rate = $rows['rate'];
-                        $product_description = $rows['product_description'];
-?>
+                       
 
 
 ?>
@@ -52,7 +47,7 @@ include('secure.php');
     <div class="card">
     
     <div class="card-body">
-        <h1 class="card-title">UPDATE PRODUCT</h1>
+        <h1 class="card-title">UPDATE MEDCINE</h1>
         <form method="POST" action="update_product_process.php" >
         <input type="hidden" name="product_id" value="<?php echo $rows['product_id'] ?>">
 			<div class="form-group">
@@ -116,29 +111,30 @@ include('secure.php');
             }
 ?>
 </select><br>
-					
+<label>SELECT CATEGORY</label>
+        <select name="supplier_id" id="supplier_id" ">
+<?php
+            $query = "select * from supplier_tbl where status ='0' and deleted = '0' ";
+            $query_result = $link->query($query);
+            while($rows = mysqli_fetch_array($query_result))
+            {
+              $supplier_id1 = $rows['supplier_id'];
+              $supplier_name =  $rows['supplier_name'];
+              ?>
+              <option value="<?php echo $supplier_id1; ?> " <?php if($supplier_id1 == $supplier_id){ echo "selected"; }?>> <?php echo $supplier_name; ?> </option>
+            <?php
+            }
+?>
+</select><br>
     				<label>Enter product name</label>
     				<input type="text" class="form-control" style="width:25%;" name="product_name" value="<?php echo $product_name ; ?> "required>
-    				<label>Enter product description</label>
-    				<input type="text" class="form-control" style="width:25%;" name="product_description" value="<?php echo $product_description ; ?> "required>
-    				<label>Enter product code</label>
-    				<input type="text" class="form-control" style="width:25%;" name="product_code" value="<?php echo $product_code ; ?> "required>
-    				<label>Enter qunatity</label>
-    				<input type="text" class="form-control" style="width:25%;" name="quantity" value="<?php echo $quantity ; ?> "required>
+    				
     				<label>Enter product packing</label>
     				<input type="text" class="form-control" style="width:25%;" name="packing" value="<?php echo $packing ; ?> "       id="price" required>
     				<label>Enter generic name</label>
     				<input type="text" class="form-control" style="width:25%;" name="generic_name" value="<?php echo $category_name ; ?>"  required>
-    				<label>Enter Expiry_date</label>
-    				<input type="date" class="form-control" style="width:25%;" name="expiry_date"     value="<?php echo $expiry_date ; ?>"   required>
-                    <label>Enter MRP</label>
-    				<input type="text" class="form-control" style="width:25%;" name="mrp" value="<?php echo $mrp ; ?>"  required>
-    		
-                    <label>Enter rate</label>
-    				<input type="text" class="form-control" style="width:25%;" name="rate" value="<?php echo $rate ; ?>"  required>
     				
-  				</div>
-  			
+  	
  					 <button type="submit" name="updateproduct" class="btn btn-primary">UPDATE PRODUCT</button>
  					 <a href="view_product.php" class="btn btn-secondary">CANCLE</a>
 			</div>
