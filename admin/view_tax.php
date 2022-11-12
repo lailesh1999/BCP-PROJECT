@@ -68,7 +68,7 @@ if(isset($_GET['msg']))
 
                             <div class="container">
 								
-                                <div class="alert alert-success alert-dismissible fade show">
+                                <div class="alert alert-danger alert-dismissible fade show">
 									<button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
 									<strong>!!!!!DATA HAS BEEN DELETED SUCESSFULLY!!!!!</strong> 
 								</div>
@@ -132,8 +132,8 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 2%;">
- 	<table class="table table-bordered" id="example" style="width: 40%;">
- 			<thead><tr><th>TAX ID</th>
+ 	<table class="table table-dark table-striped" id="example" style="width: 96%;">
+ 			<thead class = "table-dark"><tr><th>TAX ID</th>
  						<th>TAX NAME</th>
                          <th>TAX RATE</th>
  						<th>EDIT</th>
@@ -156,7 +156,7 @@ if(isset($_GET['msg']))
  				<td><?php echo " $tax_name"; ?></td>
                  <td><?php echo " $tax_rate"; ?></td>
  				<td><a  onclick="myEdit(<?php echo "$tax_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$tax_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
+ 				<td> <a onclick="myFun(<?php echo "$tax_id"; ?>)"  class = "btn btn-danger" style="color:white; ">DELETE</a></td>
 			</tr>
 	
 <?php 
@@ -192,7 +192,7 @@ if(isset($_GET['msg']))
 include('includes/script.php');
 ?>
 
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();

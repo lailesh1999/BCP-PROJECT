@@ -132,7 +132,7 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 2%;">
- 	<table class="table table-bordered" id="example" style="width: 40%;">
+ 	<table class="table table-dark table-striped" id="example" style="width: 100%;">
  			<thead><tr><th>CATEGORY ID</th>
  						<th>CATEGORY NAME</th>
  						<th>EDIT</th>

@@ -10,12 +10,12 @@ if(isset($_POST['addunit']))
 		if($query_res)
 		{
 			echo "data has been inserted";
-			header('location:view_unit.php?msg=1');
+			header('location:add_units.php?msg=1');
 
 		}
 		else
 		{
-			header('location:view_unit.php?msg=1.1');
+			header('location:add_units.php?msg=1.1');
 
 		}
 

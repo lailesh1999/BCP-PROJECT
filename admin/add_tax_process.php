@@ -10,12 +10,12 @@ if(isset($_POST['addtax']))
 		$query_res=$link->query($query);
 		if($query_res)
 		{
-			header('location:view_tax.php?msg=1');
+			header('location:add_tax.php?msg=1');
 
 		}
 		else
 		{
-			header('location:view_tax.php?msg=1.1');
+			header('location:add_tax.php?msg=1.1');
 		}
 
 }

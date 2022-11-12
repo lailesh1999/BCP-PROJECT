@@ -131,8 +131,10 @@ if(isset($_GET['msg']))
  }
 }
  ?>
+	
  	<div style="padding: 2%;">
- 	<table class="table table-bordered" id="example" style="width: 40%;">
+	 <center><h1><b>UNIT DETAILS</b></h1></center>
+ 	<table class="table table-dark table-striped" id="example" style="width: 100%;">
  			<thead><tr><th>UNIT ID</th>
  						<th>UNIT NAME</th>
  						<th>EDIT</th>
@@ -152,7 +154,7 @@ if(isset($_GET['msg']))
  			<tr><td> <?php echo " $unit_id"; ?></td>
  				<td><?php echo " $unit_name"; ?></td>
  				<td><a  onclick="myEdit(<?php echo "$unit_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$unit_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
+ 				<td> <a onclick="myFun(<?php echo "$unit_id"; ?>)"  class = "btn btn-danger" style="color:white; ">DELETE</a></td>
 			</tr>
 	
 <?php 
@@ -164,7 +166,6 @@ if(isset($_GET['msg']))
 
 ?>
 </table>
-<a href="index.php" class="btn btn-danger">CANCEL</a></div>
 
 
 
