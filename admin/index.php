@@ -1,6 +1,31 @@
  <!DOCTYPE html>
  <html>
  <head>
+  <style>
+    @property --num {
+  syntax: "<integer>";
+  initial-value: 1;
+  inherits: false;
+}
+ #anime {
+  animation: counter 20s infinite alternate ease-in-out;
+  counter-reset: num var(--num);
+  font: 800 20px system-ui;
+  padding: 2rem;
+}
+#anime::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 1000;
+  }
+}
+</style>
    <title></title>
 
 
@@ -47,7 +72,7 @@ else
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      <span id ="anime" class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -69,7 +94,7 @@ else
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <span class="h2" id ="anime" font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -91,7 +116,7 @@ else
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <span class="h2 font-weight-bold mb-0" id ="anime"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -113,7 +138,7 @@ else
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <span class="h2 font-weight-bold mb-0" id ="anime">%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
