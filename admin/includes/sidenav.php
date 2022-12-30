@@ -92,6 +92,18 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="view_purchase.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">VIEW PURCHASE</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="add_customer.php">
+                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <span class="nav-link-text">ADD CUSTOMER</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-fw fa-address-book text-red"></i>
                 <span class="nav-link-text">LOG OUT</span>
@@ -108,13 +120,13 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="filter.php">
+              <a class="nav-link" href="billing.php">
                 <i class="fas fa-filter text-red"></i>
-                <span class="nav-link-text">FILTER</span>
+                <span class="nav-link-text">BILLING</span>
               </a>
             </li>
            <li class="nav-item">
-              <a class="nav-link" href="generate_report.php">
+              <a class="nav-link" href="view_billing_report.php">
                 <i class="fas fa-fw fa-address-card text-blue"></i>
                 <span class="nav-link-text">REPORT</span>
               </a>

@@ -24,9 +24,10 @@
 
 <?php
 include("dbconnect.php");
-$query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st where s.supplier_id = st.supplier_id and p.product_id=s.product_id and st.supplier_id=s.supplier_id and p.deleted='0' and st.deleted='0' and s.deleted='0'";
- $query_res = $link->query($query);
- if(isset($_GET['msg']))
+$query = "select p.product_name,pt.quantity,pt.purchase_price,pt.invoice_number,pt.total_price,s.supplier_name,p.product_id,pt.purchase_id,s.supplier_id from product_tbl p,purchase_tbl pt,supplier_tbl s where s.supplier_id = pt.supplier_id and p.product_id=.pt.product_id and s.supplier_id=pt.supplier_id and p.deleted='0' and pt.deleted='0' and s.deleted='0'";
+$query_run = $link->query($query);
+
+if(isset($_GET['msg']))
  {
     if($_GET['msg']== 1)
     {
@@ -127,68 +128,44 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 5%;">
- 	<table class="table " id="example1" style="width: 40%;">
+ 	<table class="table " id="example" style="width: 40%;">
  			<thead class="table-dark"><tr>
+                        <th>SUPPLIER NAME</th>
                         <th>MEDICINE NAME</th>
-                        <th>PACKING</th>
-                        <th>GENERIC NAME</th>
-                        <th>BATCH ID</th>
-                        <th>EXPIRY DATE</th>
- 						<th>SUPPLIER</th>
- 						<th>QTY</th>
-                        <th>MRP</th>
-                        <th>PRICE</th>
+                        <th>QUANTITY</th>
+                        <th>PURCHASE PRICE</th>
+                        <th>TOTAL PRICE</th>
+ 						<th>INVOICE NUMBER</th>
                         <th>EDIT</th>
                         <th>DELETE</th>
  					</tr>
  			</thead>
 		 <?php
- 	 			while($rows = mysqli_fetch_array($query_res))
+ 	 			while($rows = mysqli_fetch_array($query_run))
  	 			{
- 						$stock_id = $rows['stock_id'];
+ 						$purchase_id = $rows['purchase_id'];
  						$product_name = $rows["product_name"];
-                        $packing = $rows['packing'];
-                        $generic_name = $rows['generic_name'];
-                        $batch_id = $rows['batch_number'];
-                        $expiry_date = $rows['expiry_date'];
+                        $supplier_name = $rows['supplier_name'];
+                        $invoice_number = $rows['invoice_number'];
+                        $purchase_price = $rows['purchase_price'];
                         $supplier_name = $rows['supplier_name'];
                         $qty = $rows['quantity'];
-                        $mrp = $rows['mrp'];
-                        $price = $rows['rate'];
+                        $total_price = $rows['total_price'];
 
 		 ?>
  			    <tr>
-                 <td><?php echo " $product_name"; ?></td>
-                 <td><?php echo " $packing"; ?></td>
-                 <td><?php echo " $generic_name"; ?></td>
-                 <td><?php echo " $batch_id"; ?></td>
-                 <td><?php echo " $expiry_date"; ?></td>
                  <td><?php echo " $supplier_name"; ?></td>
-                 <td><?php echo "  $qty"; ?></td>
-                 <td><?php echo "  $mrp"; ?></td>
-                 <td><?php echo " $price"; ?></td>
+                 <td><?php echo " $product_name"; ?></td>
+                 <td><?php echo " $qty"; ?></td>
+                 <td><?php echo " $purchase_price"; ?></td>
+                 <td><?php echo " $total_price"; ?></td>
+                 <td><?php echo " $invoice_number"; ?></td>
                  
-</button>
- 				<td><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white; ">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$stock_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
+                
+ 				<td><a  onclick="myEdit(<?php echo "$purchase_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
+ 				<td> <a onclick="myFun(<?php echo "$purchase_id"; ?>)"  class = "btn btn-danger" style="color:white; ">DELETE</a></td>
 			</tr>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+	
 <?php 
  					}
 			
@@ -233,13 +210,13 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 
-	// function myFun(pid){
-	// 	var edit = confirm("ARE YOU SURE TO DELETE DATA");
-	// 	if(edit){
-	// 		window.location="delete_product.php?product_id="+pid;
-	// 	}
+	function myFun(pid){
+		var edit = confirm("ARE YOU SURE TO DELETE DATA");
+		if(edit){
+			window.location="delete_product.php?product_id="+pid;
+		}
 		
-    // }
+    }
 </script>
 <script type="text/javascript">
 
@@ -251,7 +228,6 @@ $(document).ready(function() {
 		
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"
 ></script>

@@ -110,7 +110,6 @@ include('includes/script.php');
 
   function calTotal(val1)
 {
-    //alert(val1);
     var num1 = document.getElementById('itotal').value;
     var num2 = document.getElementById('qty').value;
     var total = num1 * num2;

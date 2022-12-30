@@ -28,23 +28,21 @@
     <div class="card w-75 ">
     
     <div class="card-body" text-center style="width: 90%;">
-        <h1 class="card-title">ADD SUPPLIER</h1>
-        <form method="POST" action="add_supplier_process.php" enctype="multipart/form-data">
+        <h1 class="card-title">ADD CUSTOMER</h1>
+        <form method="POST" action="add_customer_process.php" enctype="multipart/form-data">
         <div class="card-body">
 			<div class="form-group">
-                    <label>ENTER SUPPLIER NAME</label>
-    		        <input type="text"  class="form-control"  name="supplier_name" required>
-                    <label>ENTER SUPPLIER CONTACT</label>
-                    <input type="text"     class="form-control" id="supplier_contact" name="supplier_contact" onblur="contactVali(this.value)" required>
+                    <label>ENTER CUSTOMER NAME</label>
+    		        <input type="text"  class="form-control"  name="customer_name" required>
+                    <label>ENTER  CUSTOMER CONTACT</label>
+                    <input type="text"     class="form-control" id="supplier_contact" name="contact" onblur="contactVali(this.value)" required>
                     <div id="phone" style="color:red;"></div>
-  			        <label>ENTER SUPPLIER GMAIL</label>
-                    <input type="text"  class="form-control" id="supplier_email"  name="supplier_email" onblur="emailVali(this.value)" required>
+  			        <label>ENTER CUSTOMER GMAIL</label>
+                    <input type="text"  class="form-control" id="supplier_email"  name="email" onblur="emailVali(this.value)" required>
                     <div id="email1" style="color:red;"></div><div id="email2" style="color:green;"></div>
-                    <label>ENTER SUPPLIER ADDRESS</label>
-                    <textarea   class="form-control"name="supplier_address" placeholder="ENTER ADDRESS" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label>ENTER TAX</label>
-                    <input type="text"  class="form-control"  name="tax"  required><br>
-                    <button type="submit" name="addsupplier" id="submit" class="btn btn-primary" disabled>ADD SUPPLIER</button>
+                    <label>ENTER CUSTOMER ADDRESS</label>
+                    <textarea   class="form-control"name="address" placeholder="ENTER ADDRESS" id="floatingTextarea2" style="height: 100px"></textarea><br>
+                    <button type="submit" name="addcustomer" id="submit" class="btn btn-primary" disabled>ADD CUSTOMER</button>
                     <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>                                                                                                                        
                     <br>
   			</div>

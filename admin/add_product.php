@@ -67,15 +67,12 @@
               $tax_rate = $rows['tax_rate'];
               ?>
               <option value="<?php echo $tax_id; ?> "> <?php echo $tax_name; ?> </option>
-
-           
             <?php
             }
 ?>
         </select><br>
          <label>SELECT TAX RATE</label>
         <select name="tax_id" class="custom-select" id="tax_id">
-
 ?>
         </select><br>
  <label>SELECT CATEGORY</label>
@@ -145,6 +142,7 @@ include('includes/script.php');
     $.ajax({
         type:'GET',
         url:'ajax_tax_rate.php?tax_id='+val1,
+        
         success:function(result){
             document.getElementById('tax_id').innerHTML=result;
         }
