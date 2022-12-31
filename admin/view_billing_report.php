@@ -32,8 +32,9 @@
 	else
 	{
 		$from_date = date('Y-m-d');
-	   $to_date = date('Y-m-d');
+	    $to_date = date('Y-m-d');
 	}
+
 // $trans_mode="";
 // 	if(isset($_GET["address"]))
 // 	{
@@ -86,7 +87,7 @@
 
 	
 	 //echo $query1 =" SELECT i.order_no,i.grand_total,c.customer_name,c.customer_address,c.customer_pincode,c.customer_phone_number,i.user_id,i.address_id from invoice_tbl i,customer_tbl c where i.created_date between '2020-12-23' and '2020-12-24' and i.user_id = c.user_id and c.deleted='0' and i.deleted='0' ";
-	 $query = "SELECT * from invoice_tbl where date(created_date) >= '$from_date' and date(created_date)<='$to_date' and deleted = '0'";
+	  $query = "SELECT * from invoice_tbl where date(created_date) >= '$from_date' and date(created_date)<='$to_date' and deleted = '0'";
      $query_res = $link->query($query);
 
   
@@ -148,3 +149,20 @@ include('includes/script.php');
 
 </body>
  </html>
+<script type="text/javascript">
+	function printFile()
+	{
+		window.print();
+	}
+
+
+	function dispReport()
+	{
+		var from_date = document.getElementById("fdate").value;
+		alert(from_date);
+		var to_date  = document.getElementById("tdate").value;
+		
+		//alert(val);
+		window.location = "view_billing_report.php?from_date="+from_date+"&to_date="+to_date;
+	}
+</script>

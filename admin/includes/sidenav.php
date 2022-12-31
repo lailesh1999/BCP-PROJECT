@@ -131,7 +131,12 @@
                 <span class="nav-link-text">REPORT</span>
               </a>
             </li>
-           
+           <li class="nav-item">
+              <a class="nav-link" href="view_sales_report.php">
+                <i class="fas fa-fw fa-address-card text-blue"></i>
+                <span class="nav-link-text">SALES REPORT</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
