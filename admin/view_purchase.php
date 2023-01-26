@@ -128,7 +128,8 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 5%;">
- 	<table class="table " id="example" style="width: 40%;">
+	<h1>VIEW PURCHASE</h1>
+ 	<table class="table " id="example" style="width: 100%;">
  			<thead class="table-dark"><tr>
                         <th>SUPPLIER NAME</th>
                         <th>MEDICINE NAME</th>

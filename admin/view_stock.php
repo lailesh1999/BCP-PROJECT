@@ -24,6 +24,7 @@
 
 <?php
 include("dbconnect.php");
+
 $query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st where s.supplier_id = st.supplier_id and p.product_id=s.product_id and st.supplier_id=s.supplier_id and p.deleted='0' and st.deleted='0' and s.deleted='0'";
  $query_res = $link->query($query);
  if(isset($_GET['msg']))
@@ -127,6 +128,7 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 5%;">
+  <h1>VIEW STOCKS</h1>
  	<table class="table " id="example1" style="width: 40%;">
  			<thead class="table-dark"><tr>
                         <th>MEDICINE NAME</th>
@@ -169,26 +171,10 @@ if(isset($_GET['msg']))
                  <td><?php echo " $price"; ?></td>
                  
 </button>
- 				<td><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white; ">EDIT</a> </td>
+ 				<td><a onclick="myEdit(<?php echo "$stock_id"; ?>)"  style="color:blue; ">EDIT</a> </td>
  				<td> <a onclick="myFun(<?php echo "$stock_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
 			</tr>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+            
 <?php 
  					}
 			
@@ -199,10 +185,13 @@ if(isset($_GET['msg']))
 </div>
 <?php
 	//include('includes/footer.php');
+
+  
 ?>
 
 
 </div>
+
 
 
 <?php
@@ -233,24 +222,27 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 
-	// function myFun(pid){
-	// 	var edit = confirm("ARE YOU SURE TO DELETE DATA");
-	// 	if(edit){
-	// 		window.location="delete_product.php?product_id="+pid;
-	// 	}
+ function myFun(sid){
+		var edit = confirm("ARE YOU SURE TO DELETE DATA");
+	 	if(edit){
+	 		window.location="delete_stock.php?stock_id="+sid;
+	 	}
 		
-    // }
+  }
 </script>
 <script type="text/javascript">
 
-	function myEdit(pid){
+	function myEdit(sid){
 		var edit = confirm("ARE YOU SURE TO EDIT DATA");
 		if(edit){
-			window.location="update_product.php?product_id="+pid;
+			window.location="update_stock.php?stock_id="+sid;
+      
+     
 		}
 		
     }
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"

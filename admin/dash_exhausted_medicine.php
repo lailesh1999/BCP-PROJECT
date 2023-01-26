@@ -2,18 +2,16 @@
 <html>
 <head>
 	<title></title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css"
+/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	<?php
-
 		include('includes/stylesheet.php');
         include('secure.php');  
 	?>
 </head>
-<body>
+<body >
 	<?php
-
 		include('includes/sidenav.php');
 ?>
 <div class="main-content" id="panel">
@@ -26,14 +24,15 @@
 
 <?php
 include("dbconnect.php");
- $query = " SELECT * from tax_tbl where deleted='0' and status='0' ";
+
+ $query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st where s.supplier_id = st.supplier_id and p.product_id=s.product_id and st.supplier_id=s.supplier_id and p.deleted='0' and st.deleted='0' and s.deleted='0' and s.quantity < '5'";
  $query_res = $link->query($query);
+ $c =0;
  if(isset($_GET['msg']))
  {
     if($_GET['msg']== 1)
     {
         ?>
-
                             <div class="container">
 								
                                 <div class="alert alert-success alert-dismissible fade show">
@@ -52,7 +51,7 @@ if(isset($_GET['msg']))
         ?>
 
                             <div class="container">
-								
+
                                 <div class="alert alert-success alert-dismissible fade show">
 									<button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
 									<strong>!!!!!DATA HAS NOT BEEN INSERTED!!!!!</strong> 
@@ -67,17 +66,15 @@ if(isset($_GET['msg']))
     if($_GET['msg']== 2)
     {
         ?>
-
                             <div class="container">
 								
-                                <div class="alert alert-danger alert-dismissible fade show">
+                                <div class="alert alert-success alert-dismissible fade show">
 									<button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
 									<strong>!!!!!DATA HAS BEEN DELETED SUCESSFULLY!!!!!</strong> 
 								</div>
 							</div>
 <?php
     }
-
 
  }
  if(isset($_GET['msg']))
@@ -120,7 +117,6 @@ if(isset($_GET['msg']))
     if($_GET['msg']== 3.1)
     {
         ?>
-
                             <div class="container">
 								
                                 <div class="alert alert-success alert-dismissible fade show">
@@ -129,96 +125,91 @@ if(isset($_GET['msg']))
 								</div>
 							</div>
 <?php
-
  }
 }
  ?>
- 	<div style="padding: 2%;">
- 	<table class="table table-dark table-striped" id="example" style="width: 96%;">
- 			<thead class = "table-dark"><tr><th>TAX ID</th>
- 						<th>TAX NAME</th>
-                         <th>TAX RATE</th>
- 						<th>EDIT</th>
- 						<th>DELETE</th>
+ 	<div style="padding: 5%;">
+  <h1 style="color:red;">MEDICINE GOING TO EXHAUSTED</h1>
+ 	<table  class="table table-hover  table-bordered" id="example1" style="width: 100%;color:black;">
+ 			<tr class="bg-danger">
+                        <th>MEDICINE NAME</th>
+                        <th>PACKING</th>
+                        <th>GENERIC NAME</th>
+                        <th>BATCH ID</th>
+                        <th>EXPIRY DATE</th>
+ 						<th>SUPPLIER</th>
+ 						<th>QTY</th>
+                       
+                        <th>PRICE</th>
+                        
  					</tr>
- 			</thead>
-
+ 			
 		 <?php
+                if (mysqli_num_rows($query_res) > 0) 
+            {
  	 			while($rows = mysqli_fetch_array($query_res))
  	 			{
- 				//foreach($query_res as $rows )
- 					//{
- 						$tax_id = $rows['tax_id'];
- 						$tax_name = $rows["tax_name"];
-                        $tax_rate = $rows["tax_rate"];
-
+ 						$stock_id = $rows['stock_id'];
+ 						$product_name = $rows["product_name"];
+                        $packing = $rows['packing'];
+                        $generic_name = $rows['generic_name'];
+                        $batch_id = $rows['batch_number'];
+                        $expiry_date = $rows['expiry_date'];
+                        $supplier_name = $rows['supplier_name'];
+                        $qty = $rows['quantity'];
+                        $mrp = $rows['mrp'];
+                        $price = $rows['rate'];
+                        
+                        $c = $c + 1;
+                        $_SESSION['count'] = $c;
 
 		 ?>
- 			<tr><td> <?php echo " $tax_id"; ?></td>
- 				<td><?php echo " $tax_name"; ?></td>
-                 <td><?php echo " $tax_rate"; ?></td>
- 				<td><a  onclick="myEdit(<?php echo "$tax_id"; ?>)" class="btn btn-primary" style="color:white; " data-bs-toggle="modal" data-bs-target="#exampleModal">EDIT</a> </td>
- 				<td> <a onclick="myFun(<?php echo "$tax_id"; ?>)"  class = "btn btn-danger" style="color:white; ">DELETE</a></td>
+ 			    <tr>
+                 <td><?php echo " $product_name"; ?></td>
+                 <td><?php echo " $packing"; ?></td>
+                 <td><?php echo " $generic_name"; ?></td>
+                 <td><?php echo " $batch_id"; ?></td>
+                 <td><?php echo " $expiry_date"; ?></td>
+                 <td><?php echo " $supplier_name"; ?></td>
+                 <td><?php echo "  $qty"; ?></td>
+        
+                 <td><?php echo " $price"; ?></td>
+                 
+
+                 
+</button>
+ 				
 			</tr>
-	
+            
 <?php 
  					}
-				
-
-
-
-
+                }
+                else{
+                    echo " NO RECORS FOUND";
+                }
+			
 ?>
 </table>
-<a href="index.php" class="btn btn-danger">CANCEL</a></div>
-
-
-
-	
-
-
 </div>
 
-
+</div>
 <?php
 	//include('includes/footer.php');
+
+  
 ?>
 
 
 </div>
+
 
 
 <?php
 include('includes/script.php');
 ?>
 
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
 
-<script type="text/javascript">
 
-	function myFun(tid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_tax.php?tax_id="+tid;
-		}
-		
-    }
-</script>
-<script type="text/javascript">
-
-	function myEdit(tid){
-		var edit = confirm("ARE YOU SURE TO EDIT DATA");
-		if(edit){
-			window.location="update_tax.php?tax_id="+tid;
-		}
-		
-    }
-</script>
   
 </body>
 </html>
@@ -227,9 +218,49 @@ $(document).ready(function() {
 
     function diss(){
 		
-			window.location="view_tax.php";
+			window.location="view_stock.php";
 	
 		
     }
 
  </script> 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example11').DataTable();
+} );
+</script>
+
+<script type="text/javascript">
+
+ function myFun(sid){
+		var edit = confirm("ARE YOU SURE TO DELETE DATA");
+	 	if(edit){
+	 		window.location="delete_stock.php?stock_id="+sid;
+	 	}
+		
+  }
+</script>
+
+<script type="text/javascript">
+
+	function myEdit(sid){
+		var edit = confirm("ARE YOU SURE TO EDIT DATA");
+		if(edit){
+			window.location="update_stock.php?stock_id="+sid;
+      
+     
+		}
+		
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"
+></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script type="text/javascript" >
+$(function() {
+$("#example").dataTable();
+});
+</script>

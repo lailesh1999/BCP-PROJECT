@@ -28,7 +28,7 @@
     <div class="card w-75 ">
     
     <div class="card-body" text-center style="width: 100%;">
-        <h1 class="card-title">ADD CATEGORY</h1>
+        <h1 class="card-title">ADD MEDICINE CATEGORY</h1>
         <form method="POST" action="add_category_process.php" enctype="multipart/form-data">
         <div class="card-body">
 			<div class="form-group">

@@ -128,13 +128,19 @@
            <li class="nav-item">
               <a class="nav-link" href="view_billing_report.php">
                 <i class="fas fa-fw fa-address-card text-blue"></i>
-                <span class="nav-link-text">REPORT</span>
+                <span class="nav-link-text">VIEW BILLING</span>
               </a>
             </li>
            <li class="nav-item">
               <a class="nav-link" href="view_sales_report.php">
                 <i class="fas fa-fw fa-address-card text-blue"></i>
                 <span class="nav-link-text">SALES REPORT</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="view_supplier_report.php">
+                <i class="fas fa-fw fa-address-card text-blue"></i>
+                <span class="nav-link-text">SUPPLIER REPORT</span>
               </a>
             </li>
           </ul>

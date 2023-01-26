@@ -13,7 +13,7 @@ if(isset($_POST['updateproduct']))
     $product_name = $_POST['product_name'];
 	$packing = $_POST['packing'];
     $generic_name = $_POST['generic_name'];
-    $query = " UPDATE product_tbl SET product_name ='$product_name',packing='$packing',generic_name='$generic_name',supplier_id='$supplier_id',category_id='$category_id',unit_id='$unit_id',tax_id='$tax_id',updated_by_id='$admin_id' where product_id = '$product_id'";
+   echo  $query = " UPDATE product_tbl SET product_name ='$product_name',packing='$packing',generic_name='$generic_name',supplier_id='$supplier_id',category_id='$category_id',unit_id='$unit_id',tax_id='$tax_id',updated_by_id='$admin_id' where product_id = '$product_id'";
 	$query_res = $link->query($query);
 	if($query_res)
 	{

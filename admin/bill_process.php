@@ -43,7 +43,7 @@ if(isset($_POST['bill']))
 		$query_invoice_detail_result = $link->query($query_invoice_detail);
 		$i++;
 	}
-}  
+
 ?>
 <div style="width: auto;border: 2px solid black;padding-left: 1%;height: auto;"><br>
 <b>DEEPTHI MEDICALS</b><br><br>
@@ -81,10 +81,6 @@ if(isset($_POST['bill']))
  						<th>TOTAL PRICE</th>
 						<hr>
  						</tr>
-
-
-
-
 	<?php
 	$t =0;
 	while($r =mysqli_fetch_array($query_invoice_result))
@@ -117,6 +113,27 @@ if(isset($_POST['bill']))
 
 
 </div>
+<?php 
+
+
+$q = "SELECT  * from invoice_detail_tbl where invoice_id = '$invoice_id'";
+$q_run = $link->query($q);
+while($rows = mysqli_fetch_array($q_run)){
+	$stock_id = $rows['stock_id'];
+	$quantity1 = $rows['quantity'];
+	$q1 = "SELECT * from stock_tbl where stock_id = '$stock_id'";
+	$quantity = 0;
+	$q1_run = $link->query($q1);
+	while($r = mysqli_fetch_array($q1_run)){
+		$quantity = $r['quantity'];
+		$stock_id = $r['stock_id'];
+	}
+	 $quantity = $quantity-$quantity1;
+	 $query4 = " UPDATE stock_tbl set quantity = '$quantity' where deleted ='0' and status='0' and stock_id = '$stock_id'";
+	$query_result4 = $link->query($query4);
+}
+}
+?>
 <script type="text/javascript">
 	
 	window.print();
