@@ -24,7 +24,8 @@
 <div style="padding: 2%"> 
 <div id="filter">
 <table class="table table-sm" style="width: 100%;" id="datatable">
-	<tr><th style="text-align: center;">SUPPLIER NAME</th>
+	<tr>
+        <th style="text-align: center;">SUPPLIER NAME</th>
         <th style="text-align: center;">MEDICINE NAME</th>
         <th style="text-align: center;">QUANTITY</th>
 		<th style="text-align: center;">PURCHASE PRICE</th>

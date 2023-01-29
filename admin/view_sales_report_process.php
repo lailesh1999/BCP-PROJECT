@@ -24,7 +24,8 @@
 <div style="padding: 2%"> 
 <div id="filter">
 <table class="table table-sm" style="width: 100%;" id="datatable">
-	<tr><th style="text-align: center;">DATE</th>
+	<tr>
+		<th style="text-align: center;">DATE</th>
         <th style="text-align: center;">CUSTOMER NAME</th>
         <th style="text-align: center;">ORDER NUMBER</th>
 		<th style="text-align: center;">MEDICINE NAME</th>

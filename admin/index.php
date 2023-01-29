@@ -3,9 +3,6 @@
  <head>
   
    <title></title>
-
-
-   
 <?php
 
     include('includes/stylesheet.php');
@@ -69,6 +66,49 @@ include("dbconnect.php");
  	 			{             
             $c5 = $c5 + 1;
         }
+$date = date('Y-m-d');
+$query6 = "SELECT * from invoice_tbl where date(created_date) = '$date' and deleted = '0'";
+$query_res6 = $link->query($query6);
+$grand =0;
+ while($row = mysqli_fetch_array($query_res6))
+ {
+  $grand_total = $row['grand_total'];
+ 	$customer_id = $row['customer_id'];
+    $invoice_id = $row['invoice_id'];
+ 	    $query1 = "SELECT * from customer_tbl  where customer_id='$customer_id'";
+ 		$query_result1 = $link->query($query1);
+ 		while($r = mysqli_fetch_array($query_result1))
+ 		{
+ 			$customer_name =$r['customer_name'];	
+ 		}
+         $query_invoice = " SELECT i.order_no,i.invoice_id,i.created_date,p.product_name,id.quantity,id.price,i.invoice_id,id.invoice_detail_id from invoice_tbl i,product_tbl p,invoice_detail_tbl id where id.product_id = p.product_id and id.invoice_id = i.invoice_id and i.invoice_id = '$invoice_id'";
+	    $query_invoice_result = $link->query($query_invoice);
+	    $total_quantity = 0;
+       
+        while($r =mysqli_fetch_array($query_invoice_result))
+	{
+		//$grand_total = $r['grand_total'];
+		$order_no = $row['order_no'];
+        $product_name = $r['product_name'];
+		$quantity=$r['quantity'];
+		$price=$r['price'];
+        $date = $row['created_date'];
+		$totalq = $quantity * $price;
+		$total_quantity = $total_quantity + $quantity;
+        $grand = $grand + $totalq;
+ }
+}
+$date = date('Y-m-d');
+    $query7 = "SELECT s.supplier_name,p.product_name,pc.quantity,pc.purchase_price,pc.invoice_number,pc.total_price from purchase_tbl pc,supplier_tbl s,product_tbl p where date(pc.created_date) >= '$date'  and pc.deleted = '0' and pc.product_id = p.product_id and pc.supplier_id = s.supplier_id";
+ $query_res7 = $link->query($query7);
+
+  $grand_total=0;
+  while($row = mysqli_fetch_array($query_res7))
+ { 
+
+    $total_price = $row['total_price'];
+	$grand_total = $grand_total + $total_price;
+ }
 ?>    
  </head>
  <body onload = "functionToCall()">
@@ -87,7 +127,7 @@ include("dbconnect.php");
   
 ?>
 <div class="header bg-info pb-6">
-<div class="row" style="padding:5%;">
+  <div class="row" style="padding:3%;">
           <div class="col-xl-3 col-md-6">
             <a href="dash_exhausted_medicine.php">
               <div class="card card-stats">
@@ -115,7 +155,7 @@ include("dbconnect.php");
               </div>
             </a>
           </div>
-<div class="col-xl-3 col-md-6">
+   <div class="col-xl-3 col-md-6">
             <a href="dash_expired_medicine.php">
               <div class="card card-stats">
                 <!-- Card body -->
@@ -250,141 +290,252 @@ include("dbconnect.php");
               </div>
             </a>
           </div>
-            <div class="col-xl-3 col-md-6">
+             <div class="col-xl-3 col-md-6">
+            <a href="dash_todays_sale.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <h4  class="card-title text-uppercase  mb-0" >TODAYS SALES</h4>
+                    <p class="mt-3 mb-0 text-sm">
+                    <h5><center><b><b>TOTAL SALES:&nbsp&nbsp<?php echo $grand ?>  </b></b></center></h5>
+                    <span class="text-nowrap"></span>
+                  </p>
+                    
                     </div>
+                    
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                      <div class='fas fa-money-bill' style='font-size:48px;color:blue'>
+                        
                       </div>
+                      
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
+                 
                 </div>
               </div>
-            </div>
+            </a>
+          </div>
+          
+                    
             <div class="col-xl-3 col-md-6">
+            <a href="dash_total_purchase.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <h5  class="card-title text-uppercase  mb-0" >TODAYS PURCHASE</h5>
+                    <p class="mt-3 mb-0 text-sm">
+                    <h3><center<b><b>TOTAL:<?php echo $grand_total?>  </b></b></center></h3>
+                    <span class="text-nowrap"></span>
+                  </p>
+                    
                     </div>
+                    
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                      <div class='fas fa-coins' style='font-size:48px;color:BLACK'>
+                        
                       </div>
+                      
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
+                 
                 </div>
               </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
+            </a>
+           </div>
+          <div class="col-xl-3 col-md-6">
+            <a href="billing.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-fax' style='font-size:60px;color:DarkRed;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>CREATE NEW INVOICE</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
-            </div>
+            </a>
+          </div>
             <div class="col-xl-3 col-md-6">
+            <a href="add_product.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-file-medical' style='font-size:60px;color:red;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>ADD NEW MEDICINE</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
-            </div>
+            </a>
+          </div>
             <div class="col-xl-3 col-md-6">
+            <a href="add_stock.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-boxes' style='font-size:60px;color:Orange;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>ADD NEW STOCK</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
+            </a>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <a href="add_supplier.php">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-ambulance' style='font-size:60px;color:Indigo;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>ADD NEW SUPPLIER</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
-            </div>
+            </a>
+          </div>
+                    <div class="col-xl-3 col-md-6">
+            <a href="view_billing_report.php">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-clipboard-list' style='font-size:60px;color:DarkViolet;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>VIEW INVOICESES</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+                    <div class="col-xl-3 col-md-6">
+            <a href="view_sales_report.php">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-chalkboard-teacher' style='font-size:60px;color:FireBrick;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>SALES REPORT</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+                    <div class="col-xl-3 col-md-6">
+            <a href="view_supplier_report.php">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-file-alt' style='font-size:60px;color:Indigo;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>PURCHASE REPORT</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+                    <div class="col-xl-3 col-md-6">
+            <a href="add_customer.php">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      
+                        <div class="col-auto">
+                           <div class='fas fa-handshake' style='font-size:60px;color:MediumBlue;padding-left:35%;'>
+                        </div>
+                  
+                      <p class="mt-3 mb-0 text-sm">
+                          <h3><center><i style='color:blue;'>ADD NEW CUSTOMER</i></center></h3>
+                          <span class="text-nowrap"></span>
+                      </p>
+                    </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
           </div>
         </div>  
       </div>
+</div>
 </div>
 
 <?php
