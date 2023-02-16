@@ -34,7 +34,7 @@ include('secure.php');
 
 ?>
 <div style="padding:7%;">
-    <div class="card">
+    <div class="card w-75" style="border:4px solid grey;">
     
     <div class="card-body">
         <h1 class="card-title">ADD UNITS</h1>
@@ -45,7 +45,7 @@ include('secure.php');
 				<label>ENTER UNIT NAME</label>
     				<input type="text" class="form-control" id="" name="unit_name" value="<?php echo $unit_name; ?>" size = "10" min="2" max="4" required>
   			</div>
- 					 <button type="submit" name="updateunit" class="btn btn-primary" >UPDATE UNIT</button>
+ 					 <button type="submit" name="updateunit" class="btn btn-success" >UPDATE UNIT</button>
            <input type="reset" class="btn btn-primary" />&nbsp<a href="view_unit.php" class="btn btn-secondary">CANCEL</a>
            <br>
         </div>

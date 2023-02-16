@@ -26,7 +26,7 @@ if(isset($_POST['addstock']))
 		{
 			header('location:view_stock.php?msg=1.1');
 		}
-       echo  $query1= " insert into purchase_tbl (supplier_id,product_id,invoice_number,quantity,purchase_price,total_price,inserted_by_id) values ('$supplier_id','$product_id','$invoice_number','$quantity','$purchase_price','$total_price','$admin_id')";
+         $query1= " insert into purchase_tbl (supplier_id,product_id,invoice_number,quantity,purchase_price,total_price,inserted_by_id) values ('$supplier_id','$product_id','$invoice_number','$quantity','$purchase_price','$total_price','$admin_id')";
         $query_res1=$link->query($query1);
           if($query_res1)
           {

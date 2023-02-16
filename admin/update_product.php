@@ -44,15 +44,15 @@ include('secure.php');
 
 ?>
 <div style="padding:7%;">
-    <div class="card">
+    <div class="card w-75">
     
-    <div class="card-body">
+    <div class="card-body" style="border:4px solid grey;">
         <h1 class="card-title">UPDATE MEDCINE</h1>
-        <form method="POST" action="update_product_process.php" >
+        <form method="POST"  action="update_product_process.php" >
         <input type="hidden" name="product_id" value="<?php echo $rows['product_id'] ?>">
 			<div class="form-group">
             <label>SELECT UNIT</label>
-        <select name="unit_id" id="unit_id">
+        <select  class="form-control" name="unit_id" id="unit_id">
 <?php
             $query = "select * from unit_tbl where status ='0' and deleted = '0' ";
             $query_result = $link->query($query);
@@ -68,7 +68,7 @@ include('secure.php');
 ?>
         </select><br>
 						 <label>SELECT TAX NAME</label>
-        				<select name="tax_id" onchange="dispTaxRate(this.value)">
+        				<select name="tax_id" class="form-control" onchange="dispTaxRate(this.value)">
         
 <?php
             			$query = "select * from tax_tbl where status ='0' and deleted = '0' ";
@@ -89,13 +89,12 @@ include('secure.php');
 	 </select>
 	 <br>
          <label>SELECT TAX RATE</label>
-        <select name="tax_id"  id="tax_id" >
+        <select name="tax_id" class="form-control" id="tax_id" >
 
-?>
--->
+
         </select><br>
         <label>SELECT CATEGORY</label>
-        <select name="category_id" id="category_id" onchange="dispSubCat(this.value)"">
+        <select name="category_id" class="form-control" id="category_id" onchange="dispSubCat(this.value)"">
 <?php
             $query = "select * from category_tbl where status ='0' and deleted = '0' ";
             $query_result = $link->query($query);
@@ -112,7 +111,7 @@ include('secure.php');
 ?>
 </select><br>
 <label>SELECT CATEGORY</label>
-        <select name="supplier_id" id="supplier_id" ">
+        <select class="form-control" name="supplier_id" id="supplier_id" ">
 <?php
             $query = "select * from supplier_tbl where status ='0' and deleted = '0' ";
             $query_result = $link->query($query);
@@ -127,15 +126,16 @@ include('secure.php');
 ?>
 </select><br>
     				<label>Enter product name</label>
-    				<input type="text" class="form-control" style="width:25%;" name="product_name" value="<?php echo $product_name ; ?> "required>
+    				<input type="text" class="form-control" name="product_name" value="<?php echo $product_name ; ?> "required>
     				
     				<label>Enter product packing</label>
-    				<input type="text" class="form-control" style="width:25%;" name="packing" value="<?php echo $packing ; ?> "       id="price" required>
+    				<input type="text" class="form-control" name="packing" value="<?php echo $packing ; ?> "       id="price" required>
     				<label>Enter generic name</label>
-    				<input type="text" class="form-control" style="width:25%;" name="generic_name" value="<?php echo $category_name ; ?>"  required>
+    				<input type="text" class="form-control"  name="generic_name" value="<?php echo $category_name ; ?>"  required>
     				
-  	
- 					 <button type="submit" name="updateproduct" class="btn btn-primary">UPDATE PRODUCT</button>
+  	       <br>
+ 					 <button type="submit" name="updateproduct" class="btn btn-info">UPDATE PRODUCT</button>
+           <button type="reset" name="updateproduct" class="btn btn-danger">RESET</button>
  					 <a href="view_product.php" class="btn btn-secondary">CANCLE</a>
 			</div>
 		</form>

@@ -44,7 +44,7 @@ include('secure.php');
 
 ?>
 <div style="padding:7%;">
-    <div class="card">
+    <div class="card w-75" style="border:2px solid grey;">
     
     <div class="card-body">
         <h1 class="card-title">UPDATE STOCK</h1>
@@ -52,7 +52,7 @@ include('secure.php');
         <input type="hidden" name="stock_id" value="<?php echo $stock_id ?>">
 			<div class="form-group">
             <label>SELECT SUPPLIER</label>
-        <select name="supplier_id" id="supplier_id" onchange="dispProduct(this.value)">
+        <select class="form-control" name="supplier_id" id="supplier_id" onchange="dispProduct(this.value)">
 <?php
             $query = "select * from supplier_tbl where status ='0' and deleted = '0' ";
             $query_result = $link->query($query);
@@ -68,25 +68,26 @@ include('secure.php');
 ?>
         </select><br>
 						<label>SELECT MEDICINE NAME</label>
-        <select name="product_id" id="product_id">
+        <select class="form-control" name="product_id" id="product_id">
             
             </select><br>
     				<label>ENTER BATCH NUMBER:</label>
-    				<input type="text" value ="<?php echo $batch_number; ?>"class="form-control" style="width:15%;" name="batch_number" required>
+    				<input type="text" value ="<?php echo $batch_number; ?>"class="form-control" name="batch_number" required>
                     <label>ENTER EXPIRY DATE:</label>
-                    <input type="date" value ="<?php echo $expiry_date; ?>" class="form-control" style="width:15%;" name="expiry_date" required>
+                    <input type="date" value ="<?php echo $expiry_date; ?>" class="form-control"  name="expiry_date" required>
                 
                     <label>ENTER  QUANTITY:</label>
-    				<input type="number" value ="<?php echo $quantity; ?>" class="form-control" id=qty style="width:15%;" name="quantity" required>
+    				<input type="number" value ="<?php echo $quantity; ?>" class="form-control" id=qty name="quantity" required>
                     
                     <label>ENTER MRP:</label>
-    				<input type="number" value ="<?php echo $mrp; ?>"class="form-control" style="width:15%;" name="mrp" required>
+    				<input type="number" value ="<?php echo $mrp; ?>"class="form-control" name="mrp" required>
                     <label>ENTER RATE:</label>
-    				<input type="number" value ="<?php echo $rate; ?>" class="form-control" style="width:15%;" name="rate" required>
-                    
+    				<input type="number" value ="<?php echo $rate; ?>" class="form-control"  name="rate" required>
+                    <br>
     
   	
- 					 <button type="submit" name="updatestock" class="btn btn-primary">UPDATE STOCK</button>
+ 					 <button type="submit" name="updatestock" class="btn btn-info">UPDATE STOCK</button>
+                     <button type="reset" class="btn btn-danger">RESET</button>
  					 <a href="view_product.php" class="btn btn-secondary">CANCLE</a>
 			</div>
 		</form>

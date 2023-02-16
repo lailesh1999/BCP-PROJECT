@@ -25,10 +25,10 @@
   //include('includes/header.php');
 ?>
 <div style="padding:7%;" >
-    <div class="card w-75 ">
+    <div class="card w-75" style="border:4px solid grey;">
     
     <div class="card-body" text-center style="width: 90%;">
-        <h1 class="card-title">ADD SUPPLIER</h1>
+        <h1 class="card-title" style="text-align: center;">ADD SUPPLIER</h1>
         <form method="POST" action="add_supplier_process.php" enctype="multipart/form-data">
         <div class="card-body">
 			<div class="form-group">
@@ -44,7 +44,7 @@
                     <textarea   class="form-control"name="supplier_address" placeholder="ENTER ADDRESS" id="floatingTextarea2" style="height: 100px"></textarea>
                     <label>ENTER TAX</label>
                     <input type="text"  class="form-control"  name="tax"  required><br>
-                    <button type="submit" name="addsupplier" id="submit" class="btn btn-primary" disabled>ADD SUPPLIER</button>
+                    <button type="submit" name="addsupplier" id="submit" class="btn btn-info" disabled>ADD SUPPLIER</button>
                     <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>                                                                                                                        
                     <br>
   			</div>

@@ -25,16 +25,18 @@
   //include('includes/header.php');
 ?>
 <div style="padding:2%;padding-left:5%;" >
-    <div class="card w-75 ">
+    <div class="card w-75 " style="border:1px solid blue;color:darkblack">
         <div class="card-body"  style="width: 100%;">
             <h1 class="card-title"><center>ADD TAX</center></h1>
                 <form method="POST" action="add_tax_process.php">
 			              <div class="form-group">
 				                <label>ENTER TAX NAME</label>
-    				            <input type="text" class="form-control"  name="tax_name" required>
+    				            <input type="text" class="form-control"  name="tax_name" onkeyup="myVali(this.value)" required>
+                                <b id="b1" style="color:red;"></b><br>
+
                         <label>ENTER TAX RATE</label>
-    				            <input type="text" class="form-control"  name="tax_rate"  required><br>
- 					              <button type="submit" name="addtax" class="btn btn-primary">ADD TAX RATE</button>
+    				<input type="number" class="form-control"  name="tax_rate"  required><br>
+ 					              <button type="submit" id="submit" name="addtax" class="btn btn-info" disabled>ADD TAX RATE</button>
                         <button type="reset"  class="btn btn-danger">RESET</button>
  					              <a href="index.php" class="btn btn-secondary">CANCEL</a>
  					          </div>
@@ -156,7 +158,7 @@ if(isset($_GET['msg']))
  
 <div style="padding-left: 20%;">
 
- 	<table class="table table-dark table-striped" id="example" style="width: 90%;">
+ 	<table class="table table-bordered" id="example" style="width: 90%;">
  			<thead  class = "table-dark"><tr><th>TAX ID</th>
  						<th>TAX NAME</th>
             <th>TAX RATE</th>
@@ -198,13 +200,28 @@ include('includes/script.php');
 </script>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
 	function myFun(tid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_tax.php?tax_id="+tid;
-		}
+		//alert(tid);
+        $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_tax_name_validate.php?tid='+tid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+                var edit = confirm("ARE YOU SURE TO DELETE DATA");
+                         if(edit){
+                     window.location="delete_tax.php?tax_id="+tid;
+                    }
+            }
+        }})
 		
     }
 </script>
@@ -231,6 +248,37 @@ include('includes/script.php');
  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#example1').DataTable();
+    $('#example').DataTable();
 } );
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+function myVali(val1)
+{
+    var bt = document.getElementById('submit');
+  //alert(val1);
+  $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_tax_name_validate.php?valiRate='+val1,
+          success: function(result){
+            if(result == 1){
+                document.getElementById('b1').innerHTML = "TAX NAME IS ALREADY PRESENT";
+                bt.disabled = true;
+            }
+            else
+            {
+                bt.disabled = false;
+                document.getElementById('b1').innerHTML = " ";
+            }
+    
+
+
+             
+    }});
+
+}
+
 </script>

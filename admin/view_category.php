@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 	<?php
 
 		include('includes/stylesheet.php');
@@ -132,8 +133,9 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 2%;">
- 	<table class="table table-dark table-striped" id="example" style="width: 100%;">
- 			<thead><tr><th>CATEGORY ID</th>
+ 		<h1 style="text-align:center;">CATEGORY DETAIL</h1>
+ 	<table class="table table-hover" id="example" style="width: 100%;">
+ 			<thead class="table-danger"><tr><th>CATEGORY ID</th>
  						<th>CATEGORY NAME</th>
  						<th>EDIT</th>
  						<th>DELETE</th>
@@ -187,8 +189,7 @@ if(isset($_GET['msg']))
 <?php
 include('includes/script.php');
 ?>
-
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();
@@ -198,10 +199,24 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(cid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_category.php?category_id="+cid;
-		}
+		$.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_cat_name_validate.php?cid='+cid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+		                var edit = confirm("ARE YOU SURE TO DELETE DATA");
+				if(edit){
+					window.location="delete_category.php?category_id="+cid;
+				}
+            }
+        }})
+
+		
 		
     }
 </script>
@@ -219,13 +234,4 @@ $(document).ready(function() {
 </body>
 </html>
 
-<script type="text/javascript">
 
-    function diss(){
-		
-			window.location="view_category.php";
-	
-		
-    }
-
- </script> 

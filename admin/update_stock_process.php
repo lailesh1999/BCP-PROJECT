@@ -24,6 +24,7 @@ if(isset($_POST['updatestock']))
 	{
 	    header('location:view_stock.php?msg=3.1');
 	}
+	$query1= " insert into purchase_tbl (supplier_id,product_id,invoice_number,quantity,purchase_price,total_price,inserted_by_id) values ('$supplier_id','$product_id','$invoice_number','$quantity','$purchase_price','$total_price','$admin_id')";
 }
 
 ?>

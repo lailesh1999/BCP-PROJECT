@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<title></title>
@@ -214,7 +214,7 @@ $(document).ready(function() {
 	function myFun(pid){
 		var edit = confirm("ARE YOU SURE TO DELETE DATA");
 		if(edit){
-			window.location="delete_product.php?product_id="+pid;
+			window.location="delete_purchase.php?purchase_id="+pid;
 		}
 		
     }

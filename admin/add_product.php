@@ -26,10 +26,10 @@
   //include('includes/header.php');
 ?>
 <div style="padding:7%;" >
-    <div class="card w-75 ">
+    <div class="card w-75 " style="border:4px solid grey;">
     
     <div class="card-body" text-center style="width: 100%;">
-        <h1 class="card-title">ADD PRODUCT</h1>
+        <h1 class="card-title" style="text-align:center;">ADD MEDICINE</h1>
         <form method="POST" action="add_product_process.php" enctype="multipart/form-data">
         <div class="card-body">
 			<div class="form-group">
@@ -112,12 +112,13 @@
 ?>
         </select><br>
                     <label>ENTER PRODUCT NAME:</label>
-    				<input type="text" class="form-control"  name="product_name" required>
+    				<input type="text" class="form-control" onkeyup="myVali(this.value)" name="product_name" required>
+                    <b id="b1" style="color:red;"></b><br>
                     <label>ENTER PACKING:</label>
     				<input type="text" class="form-control" name="packing" required>
                     <label>ENTER GENERIC NAME:</label>
-    				<input type="text" class="form-control"  name="generic_name" required>
- 					 <button type="submit" name="addproduct" class="btn btn-primary">ADD PRODUCT</button>
+    				<input type="text" class="form-control"  name="generic_name" required><br>
+ 					 <button type="submit" id="submit" name="addproduct" class="btn btn-info" disabled>ADD PRODUCT</button>
            <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>
            <br>
            </div>
@@ -151,3 +152,33 @@ include('includes/script.php');
 </script>
 </body>
  </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <script type="text/javascript">
+
+function myVali(val1)
+{
+    var bt = document.getElementById('submit');
+  //alert(val1);
+  $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_product_name_validate.php?valiPro='+val1,
+          success: function(result){
+           // alert(result);
+            if(result == 1){
+                document.getElementById('b1').innerHTML = "PRODUCT NAME IS ALREADY PRESENT";
+                bt.disabled = true;
+            }
+            else
+            {
+                bt.disabled = false;
+                document.getElementById('b1').innerHTML = " ";
+            }
+    
+
+
+             
+    }});
+
+}
+</script>

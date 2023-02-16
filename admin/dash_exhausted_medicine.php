@@ -224,11 +224,16 @@ include('includes/script.php');
     }
 
  </script> 
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#example11').DataTable();
+    $('#example1').DataTable();
 } );
+
 </script>
+
 
 <script type="text/javascript">
 

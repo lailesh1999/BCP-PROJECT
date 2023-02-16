@@ -128,8 +128,8 @@ if(isset($_GET['msg']))
  ?>
  	<div style="padding: 5%;">
     <h1 class="card-title">VIEW MEDICINE</h1>
- 	<table class="table " id="example1" style="width: 95%;">
- 			<thead class="table-dark"><tr>
+ 	<table class="table " id="example" style="width: 100%;">
+ 			<thead class="table-info"><tr>
                         <th>TAX NAME</th>
                         <th>TAX RATE</th>
                         <th>UNIT NAME</th>
@@ -222,10 +222,24 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(pid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_product.php?product_id="+pid;
-		}
+		
+                $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_pro_name_validate.php?pid='+pid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+                    {
+                        var edit = confirm("ARE YOU SURE TO DELETE DATA");
+                if(edit){
+                    window.location="delete_product.php?product_id="+pid;
+                }
+
+            }
+        }})
 		
     }
 </script>

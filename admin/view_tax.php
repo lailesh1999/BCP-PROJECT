@@ -134,8 +134,9 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 2%;">
- 	<table class="table table-dark table-striped" id="example" style="width: 96%;">
- 			<thead class = "table-dark"><tr><th>TAX ID</th>
+ 		<h1 style="text-align:center;"> TAX DETAIL</h1>
+ 	<table class="table table-hover" id="example" style="width: 96%;">
+ 			<thead class = "table-success"><tr><th>TAX ID</th>
  						<th>TAX NAME</th>
                          <th>TAX RATE</th>
  						<th>EDIT</th>
@@ -170,7 +171,7 @@ if(isset($_GET['msg']))
 
 ?>
 </table>
-<a href="index.php" class="btn btn-danger">CANCEL</a></div>
+<a href="add_tax.php" class="btn btn-danger">CANCEL</a></div>
 
 
 
@@ -199,13 +200,27 @@ $(document).ready(function() {
 } );
 </script>
 
+
 <script type="text/javascript">
 
 	function myFun(tid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_tax.php?tax_id="+tid;
-		}
+		//alert(tid);
+        $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_tax_name_validate.php?tid='+tid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+                var edit = confirm("ARE YOU SURE TO DELETE DATA");
+                         if(edit){
+                     window.location="delete_tax.php?tax_id="+tid;
+                    }
+            }
+        }})
 		
     }
 </script>

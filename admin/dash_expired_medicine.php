@@ -2,9 +2,7 @@
 <html>
 <head>
 	<title></title>
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css"
-/>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    
 	<?php
 		include('includes/stylesheet.php');
         include('secure.php');  
@@ -33,8 +31,8 @@ include("dbconnect.php");
  
  	<div style="padding: 5%;">
     <a href="index.php" class='fas fa-arrow-alt-circle-left' style='font-size:48px;color:blue'></a>
-  <center><h1 style="color:blue;background-color:blue;color:white"><marquee>EXPIRED MEDICINE</marquee></h1></center>
- 	<table  class="table table-hover  table-bordered" id="example1" style="width: 100%;color:white;">
+  <center><h1 style="color:blue;background-color:blue;color:white">EXPIRED MEDICINE</h1></center>
+ 	<table  class="table table-hover  table-bordered" id="example" style="width: 100%;color:white;">
  			<tr class="bg-primary">
                         <th>MEDICINE NAME</th>
                         <th>PACKING</th>
@@ -127,11 +125,6 @@ include('includes/script.php');
     }
 
  </script> 
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
 
 <script type="text/javascript">
 
@@ -157,11 +150,12 @@ $(document).ready(function() {
     }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"
 ></script>
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript" >
 $(function() {
 $("#example").dataTable();

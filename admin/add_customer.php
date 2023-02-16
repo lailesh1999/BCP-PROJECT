@@ -43,18 +43,15 @@
                     <label>ENTER CUSTOMER ADDRESS</label>
                     <textarea   class="form-control"name="address" placeholder="ENTER ADDRESS" id="floatingTextarea2" style="height: 100px"></textarea><br>
                     <button type="submit" name="addcustomer" id="submit" class="btn btn-primary" disabled>ADD CUSTOMER</button>
-                    <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>                                                                                                                        
-                    <br>
-  			</div>
-
- 					 
-           <br>
-           </div>
+                    <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a> <br>
+  			 </div><br>
+             </form>
+    </div>
         
 		</div>
 			
 	</div>	</div>
-</form>
+
     </div>
     </div>
 </div>

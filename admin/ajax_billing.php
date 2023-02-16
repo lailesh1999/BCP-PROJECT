@@ -1,8 +1,9 @@
 
 <?php
 include('dbconnect.php');
+$date = date('Y-m-d');
 $product_name = $_GET["proname"];
-$query = "SELECT p.product_name,p.generic_name,p.product_id,s.rate,s.expiry_date,s.quantity,s.batch_number,s.stock_id from product_tbl p,stock_tbl s where p.product_id = s.product_id  and p.deleted='0' and s.deleted='0' and p.product_name='$product_name';";
+$query = "SELECT p.product_name,p.generic_name,p.product_id,s.rate,s.expiry_date,s.quantity,s.batch_number,s.stock_id from product_tbl p,stock_tbl s where p.product_id = s.product_id  and p.deleted='0' and s.deleted='0' and p.product_name='$product_name'";
 $query_result = $link->query($query);
 while($rows = mysqli_fetch_array($query_result))
 {

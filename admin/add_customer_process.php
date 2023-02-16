@@ -12,7 +12,7 @@ if(isset($_POST['addcustomer']))
 		$query_result=$link->query($query);
 		if($query_result)
 	 {
-	 	//header('location:view_supplier.php?msg=1');
+	 	header('location:billing.php');
         echo"inserted";
 
 	 }

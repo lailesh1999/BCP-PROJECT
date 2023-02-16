@@ -129,7 +129,7 @@ if(isset($_GET['msg']))
  ?>
  	<div style="padding: 5%;">
   <h1>VIEW STOCKS</h1>
- 	<table class="table " id="example1" style="width: 40%;">
+ 	<table class="table " id="example" style="width: 100%;">
  			<thead class="table-dark"><tr>
                         <th>MEDICINE NAME</th>
                         <th>PACKING</th>
@@ -171,7 +171,7 @@ if(isset($_GET['msg']))
                  <td><?php echo " $price"; ?></td>
                  
 </button>
- 				<td><a onclick="myEdit(<?php echo "$stock_id"; ?>)"  style="color:blue; ">EDIT</a> </td>
+ 				<td><a onclick="myEdit(<?php echo "$stock_id"; ?>)"  style="color:blue; " class="btn btn-info">EDIT</a> </td>
  				<td> <a onclick="myFun(<?php echo "$stock_id"; ?>)"  class = "btn btn-danger" style="color:white; ">delete</a></td>
 			</tr>
             
@@ -180,7 +180,7 @@ if(isset($_GET['msg']))
 			
 ?>
 </table>
-<a href="index.php" class="btn btn-danger">CANCEL</a></div>
+<a href="add_stock.php" class="btn btn-danger">CANCEL</a></div>
 
 </div>
 <?php

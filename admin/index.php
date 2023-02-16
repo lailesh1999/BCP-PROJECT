@@ -46,12 +46,14 @@ include("dbconnect.php");
             $c2 = $c2 + 1;
         }
         $query3 = "select  * from customer_tbl where deleted ='0'";
- $query_res3 = $link->query($query); $query_res = $link->query($query);
+ $query_res3 = $link->query($query3); 
+ //$query_res = $link->query($query);
  $c3 =0;
  while($rows = mysqli_fetch_array($query_res3))
  	 			{             
             $c3 = $c3 + 1;
         }
+
         $query4 = " SELECT * from supplier_tbl where deleted='0' and status='0' ";
  $query_res4 = $link->query($query4);
  $c4=0;

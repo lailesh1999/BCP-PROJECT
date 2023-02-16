@@ -131,9 +131,9 @@ if(isset($_GET['msg']))
 }
  ?>
  	<div style="padding: 2%;">
-	<h1 class="card-title">VIEW SUPPIER</h1>
- 	<table class="table table-dark table-striped" id="example" style="width: 95%;">
- 			<thead><tr><th>SUPPLIER ID</th>
+	<h1 class="card-title" style="text-align:center;">VIEW SUPPIER</h1>
+ 	<table class="table table-hover" id="example" style="width: 95%;">
+ 			<thead class="table-danger"><tr><th>SUPPLIER ID</th>
  						<th>SUPPLIER NAME</th>
                         <th>SUPPLIER CONTACT</th>
                         <th>SUPPLIER EMAIL</th>
@@ -177,7 +177,7 @@ if(isset($_GET['msg']))
 
 ?>
 </table>
-<a href="index.php" class="btn btn-danger">CANCEL</a></div>
+<a href="add_supplier.php" class="btn btn-danger">CANCEL</a></div>
 
 
 
@@ -211,10 +211,23 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(sid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_supplier.php?supplier_id="+sid;
-		}
+		$.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_supp_name_validate.php?sid='+sid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+		                        var edit = confirm("ARE YOU SURE TO DELETE DATA");
+				if(edit){
+					window.location="delete_supplier.php?supplier_id="+sid;
+				}
+            }
+        }})
+		
 		
     }
 </script>

@@ -34,19 +34,19 @@ include('secure.php');
 
 ?>
 <div style="padding:7%;">
-    <div class="card">
+    <div class="card w-75" style="border:4px solid grey;">
     
     <div class="card-body">
-        <h1 class="card-title">UPDATE CATEGORY</h1>
+        <h1 class="card-title" style="text-align:center;color:palevioletblue;">UPDATE CATEGORY</h1>
         <form method="POST" action="update_category_process.php" >
 
         <input type="hidden" name="category_id" value="<?php echo $rows['category_id'] ?>">
 			<div class="form-group">
 				<label>ENTER CATEGORY NAME</label>
-    				<input type="text" class="form-control" style="width:30%;" name="category_name" value="<?php echo $category_name; ?>" size = "10" min="2" max="15" required>
+    				<input type="text" class="form-control" name="category_name" value="<?php echo $category_name; ?>" size = "10" min="2" max="15" required>
   			</div>
- 					 <button type="submit" name="updatecategory" class="btn btn-primary" >UPDATE CATEGORY</button>
-           <input type="reset" class="btn btn-primary" />&nbsp<a href="view_unit.php" class="btn btn-secondary">CANCEL</a>
+ 					 <button type="submit" name="updatecategory" class="btn btn-info" >UPDATE CATEGORY</button>
+           <input type="reset" class="btn btn-primary" />&nbsp<a href="view_category.php" class="btn btn-secondary">CANCEL</a>
            <br>
         </div>
 	</div>	</div>

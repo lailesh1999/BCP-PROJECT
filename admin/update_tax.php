@@ -37,26 +37,25 @@
 		$tax_rate = $rows['tax_rate'];
 ?>
 <div style="padding:7%;" >
-    <div class="card w-75 ">
+    <div class="card w-75 " style="border: 2px solid blue";>
     
-    <div class="card-body" text-center style="width: 180rem;">
-        <h1 class="card-title">UPDATE TAX</h1>
+        <h1 class="card-title" style="text-align:center;padding-top: 50px;">UPDATE TAX</h1>
         <form method="POST" action="update_tax_process.php">
 
-  		<div class="card-body">
+  		<div class="card-body" style="width: 100%;">
 			<div class="form-group">
             <input type="hidden" name="tax_id" value="<?php echo $rows['tax_id'] ?>">
 				<label>ENTER TAX NAME</label>
-    				<input type="text" class="form-control"  name="tax_name" value="<?php echo $rows['tax_name'] ?>" style="width:10%" required>
+    				<input type="text" class="form-control"  name="tax_name" value="<?php echo $rows['tax_name'] ?>"  required>
   			</div>
     				<label>ENTER TAX RATE</label>
-    				<input type="text" class="form-control" value="<?php echo $rows['tax_rate'] ?>" name="tax_rate" style="width:10%" required><br>
+    				<input type="text" class="form-control" value="<?php echo $rows['tax_rate'] ?>" name="tax_rate" required><br>
   			
   			
- 					 <button type="submit" name="updatetax" class="btn btn-primary">UPDATE TAX </button>
+ 					 <button type="submit" name="updatetax" class="btn btn-info">UPDATE TAX </button>
                       <button type="reset"  class="btn btn-danger">RESET</button>
 
- 					 <a href="index.php" class="btn btn-secondary">CANCEL</a>
+ 					 <a href="view_tax.php" class="btn btn-secondary">CANCEL</a>
  					 </div>
 		</div>
 	</div>

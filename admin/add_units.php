@@ -25,7 +25,7 @@
   //include('includes/header.php');
 ?>
 <div style="padding:6%;" >
-    <div class="card w-75 ">
+    <div class="card w-75 " style="border:4px solid grey;">
     
     <div class="card-body" text-center style="width: 100%;">
         <h1 class="card-title">ADD UNITS</h1>
@@ -33,9 +33,10 @@
 	
 			<div class="form-group">
 				<label>ENTER UNIT NAME</label>
-    				<input type="text" class="form-control" maxlength="4" id="" name="unit_name"  min="2" max="4" required>
+    				<input type="text" onkeyup="myVali(this.value)" class="form-control" maxlength="4" id="" name="unit_name"  min="2" max="10" required>
+                    <b id="b1" style="color:red;"></b>
   			</div>
- 					 <button type="submit" name="addunit" class="btn btn-primary" >ADD UNIT</button>
+ 					 <button type="submit" name="addunit" id="submit" class="btn btn-info" disabled>ADD UNIT</button>
            <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>
            <br>
         </div>
@@ -155,8 +156,8 @@ if(isset($_GET['msg']))
  ?>
 <div style="padding-left: 20%;">
 
- 	<table class="table table-dark table-striped" id="example1" style="width: 95%;">
-   <thead><tr><th>UNIT ID</th>
+ 	<table class="table table-hover" id="example" style="width: 95%;">
+   <thead class="table-success"><tr><th >UNIT ID</th>
  						<th>UNIT NAME</th>
  						<th>EDIT</th>
  						<th>DELETE</th>
@@ -207,10 +208,22 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(uid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
-		if(edit){
-			window.location="delete_unit.php?unit_id="+uid;
-		}
+		$.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_unit_name_validate.php?uid='+uid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+                var edit = confirm("ARE YOU SURE TO DELETE DATA");
+        if(edit){
+            window.location="delete_unit.php?unit_id="+uid;
+        }
+            }
+        }})
 		
     }
 </script>
@@ -232,9 +245,40 @@ $(document).ready(function() {
 
     function diss(){
 		
-			window.location="add_unit.php";
+			window.location="add_units.php";
 	
 		
     }
 
  </script> 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <script type="text/javascript">
+
+function myVali(val1)
+{
+    var bt = document.getElementById('submit');
+  //alert(val1);
+  $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_unit_name_validate.php?valiUnit='+val1,
+          success: function(result){
+           // alert(result);
+            if(result == 1){
+                document.getElementById('b1').innerHTML = "UNIT NAME IS ALREADY PRESENT";
+                bt.disabled = true;
+            }
+            else
+            {
+                bt.disabled = false;
+                document.getElementById('b1').innerHTML = " ";
+            }
+    
+
+
+             
+    }});
+
+}
+
+</script>

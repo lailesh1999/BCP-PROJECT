@@ -134,8 +134,8 @@ if(isset($_GET['msg']))
 	
  	<div style="padding: 2%;">
 	 <center><h1><b>UNIT DETAILS</b></h1></center>
- 	<table class="table table-dark table-striped" id="example" style="width: 100%;">
- 			<thead><tr><th>UNIT ID</th>
+ 	<table class="table table-hover" id="example" style="width: 100%;">
+ 			<thead class="table-success"><tr><th>UNIT ID</th>
  						<th>UNIT NAME</th>
  						<th>EDIT</th>
  						<th>DELETE</th>
@@ -199,10 +199,33 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(uid){
-		var edit = confirm("ARE YOU SURE TO DELETE DATA");
+
+		 $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_delete_unit_name_validate.php?uid='+uid,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                alert("DATA CANNOT BE DELETED");
+            }
+            else
+            {
+                var edit = confirm("ARE YOU SURE TO DELETE DATA");
 		if(edit){
 			window.location="delete_unit.php?unit_id="+uid;
 		}
+            }
+        }})
+
+
+
+
+
+
+
+
+
+		
 		
     }
 </script>

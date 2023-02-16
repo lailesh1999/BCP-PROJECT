@@ -40,28 +40,28 @@
                         $tax=$rows['tax'];
 ?>
 <div style="padding:7%;" >
-    <div class="card w-75 ">
+    <div class="card w-75 " style="border:4px solid grey;">
     
-    <div class="card-body" text-center style="width: 180rem;">
+    <div class="card-body" text-center style="width:100%;">
         <h1 class="card-title">UPDATE SUPPLIER</h1>
         <form method="POST" action="update_supplier_process.php">
   		<div class="card-body">
 			<div class="form-group">
             <input type="hidden" name="supplier_id" value="<?php echo $rows['supplier_id'] ?>">
             <label>ENTER SUPPLIER NAME</label>
-    		        <input type="text" style="width:15%;" value="<?php echo $rows['supplier_name'] ?>" class="form-control"  name="supplier_name" required>
+    		        <input type="text"  value="<?php echo $rows['supplier_name'] ?>" class="form-control"  name="supplier_name" required>
                     <label>ENTER SUPPLIER CONTACT</label>
-                    <input type="text"   style="width:15%;" value="<?php echo $rows['supplier_contact'] ?>" class="form-control" id="supplier_contact" name="supplier_contact" onblur="contactVali(this.value)" required>
+                    <input type="text"    value="<?php echo $rows['supplier_contact'] ?>" class="form-control" id="supplier_contact" name="supplier_contact" onblur="contactVali(this.value)" required>
                     <div id="phone" style="color:red;"></div>
   			        <label>ENTER SUPPLIER GMAIL</label>
-                    <input type="text" style="width:15%;" value="<?php echo $rows['supplier_email'] ?>" class="form-control" id="supplier_email"  name="supplier_email" onblur="emailVali(this.value)" required>
+                    <input type="text"  value="<?php echo $rows['supplier_email'] ?>" class="form-control" id="supplier_email"  name="supplier_email" onblur="emailVali(this.value)" required>
                     <div id="email1" style="color:red;"></div><div id="email2" style="color:green;"></div>
                     <label>ENTER SUPPLIER ADDRESS</label>
-                    <input type="text"  style="width:15%;" value="<?php echo $rows['supplier_address'] ?>" class="form-control"name="supplier_address"  id="floatingTextarea2" style="height: 100px"></input>
+                    <input type="text"  value="<?php echo $rows['supplier_address'] ?>" class="form-control"name="supplier_address"  id="floatingTextarea2" style="height: 100px"></input>
                     <label>ENTER TAX</label>
-                    <input type="text" value="<?php echo $rows['tax'] ?>" style="width:15%;" class="form-control"  name="tax"  required><br>
-                    <button type="submit" name="updatesupplier" id="submit" class="btn btn-primary" disabled>UPDATE SUPPLIER</button>
-                    <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>                                                                                                                        
+                    <input type="text" value="<?php echo $rows['tax'] ?>" class="form-control"  name="tax"  required><br>
+                    <button type="submit" name="updatesupplier" id="submit" class="btn btn-info" disabled>UPDATE SUPPLIER</button>
+                    <input type="reset" class="btn btn-primary" />&nbsp<a href="add_supplier.php" class="btn btn-secondary">CANCEL</a>                                                                                                                        
                     <br>
  					 </div>
 		</div>
