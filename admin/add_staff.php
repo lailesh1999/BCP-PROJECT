@@ -45,7 +45,7 @@
                     <textarea   class="form-control"name="staff_address" placeholder="ENTER ADDRESS" id="floatingTextarea2" style="height: 100px"></textarea>
                     <label>ENTER STAFF PASSWORD</label>
                     <input type="text"  class="form-control"  name="password"  required><br>
-                    <button type="submit" name="addstaff" id="submit" class="btn btn-primary" disabled>ADD STAFF</button>
+                    <button type="submit" name="addstaff" id="submit" class="btn btn-success" disabled>ADD STAFF</button>
                     <input type="reset" class="btn btn-primary" />&nbsp<a href="index.php" class="btn btn-secondary">CANCEL</a>                                                     
                     <br>
   			</div>

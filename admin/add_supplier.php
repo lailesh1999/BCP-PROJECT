@@ -33,7 +33,8 @@
         <div class="card-body">
 			<div class="form-group">
                     <label>ENTER SUPPLIER NAME</label>
-    		        <input type="text"  class="form-control"  name="supplier_name" required>
+    		        <input type="text" onkeyup="myVali(this.value)" class="form-control"  name="supplier_name" required>
+                    <b id="b1" style="color:red;"></b><br>
                     <label>ENTER SUPPLIER CONTACT</label>
                     <input type="text"     class="form-control" id="supplier_contact" name="supplier_contact" onblur="contactVali(this.value)" required>
                     <div id="phone" style="color:red;"></div>
@@ -102,6 +103,57 @@ include('includes/script.php');
             bt.disabled = true;
         }
     }
+
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <script type="text/javascript">
+
+function myVali(val1)
+{
+    var bt = document.getElementById('submit');
+  //alert(val1);
+  $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_sup_name_validate.php?valiNam='+val1,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                document.getElementById('b1').innerHTML = "SUPPLIER NAME IS ALREADY PRESENT";
+                bt.disabled = true;
+            }
+            else
+            {
+                bt.disabled = false;
+                document.getElementById('b1').innerHTML = " ";
+            }       
+    }});
+
+}
+function myVali(val1)
+{
+    var bt = document.getElementById('submit');
+  //alert(val1);
+  $.ajax({
+          type:'GET',
+          url:'validationAjax/ajax_sup_name_validate.php?valiNam='+val1,
+          success: function(result){
+            //alert(result);
+            if(result == 1){
+                document.getElementById('b1').innerHTML = "SUPPLIER NAME IS ALREADY PRESENT";
+                bt.disabled = true;
+            }
+            else
+            {
+                bt.disabled = false;
+                document.getElementById('b1').innerHTML = " ";
+            }       
+    }});
+
+}
 </script>
 </body>
  </html>

@@ -138,7 +138,7 @@ if(isset($_GET['msg']))
                         <th>STAFF CONTACT</th>
                         <th>STAFF EMAIL</th>
                         <th>STAFF ADDRESS</th>
-                         <th>PASSEORD</th>
+                         <th>PASSWORD</th>
  						<th>EDIT</th>
  						<th>DELETE</th>
  					</tr>
@@ -211,32 +211,22 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 	function myFun(sid){
-		$.ajax({
-          type:'GET',
-          url:'validationAjax/ajax_delete_supp_name_validate.php?sid='+sid,
-          success: function(result){
-            //alert(result);
-            if(result == 1){
-                alert("DATA CANNOT BE DELETED");
-            }
-            else
-            {
-		                        var edit = confirm("ARE YOU SURE TO DELETE DATA");
+		
+		      var edit = confirm("ARE YOU SURE TO DELETE DATA");
 				if(edit){
-					window.location="delete_supplier.php?supplier_id="+sid;
+					window.location="delete_staff.php?sid="+sid;
 				}
             }
-        }})
 		
 		
-    }
+ 
 </script>
 <script type="text/javascript">
 
 	function myEdit(sid){
 		var edit = confirm("ARE YOU SURE TO EDIT DATA");
 		if(edit){
-			window.location="update_supplier.php?supplier_id="+sid;
+			window.location="update_staff.php?sid="+sid;
 		}
 		
     }

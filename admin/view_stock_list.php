@@ -24,33 +24,48 @@
 <?php
 include("dbconnect.php");
     $date = date('Y-m-d');
-    $q = "select * from stock_tbl where date(created_date) = '$date' and status='1' and deleted='0'";
-    $r = $link->query($q);
-    $c=0;
-    while($t = mysqli_fetch_array($r)){
-        $c = $c + 1;
-    }
-   $query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,s.status,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st where s.supplier_id = st.supplier_id and p.product_id=s.product_id and st.supplier_id=s.supplier_id and p.deleted='0' and st.deleted='0' and s.deleted='0' and s.expiry_date  < '$date'";
+    $query = "select p.product_name,p.generic_name,p.packing,s.quantity,s.expiry_date,s.batch_number,s.mrp,s.rate,s.stock_id,rt.return_id,rt.status,rt.deleted,p.product_id,st.supplier_id,st.supplier_name from product_tbl p,stock_tbl s,supplier_tbl st ,return_stock_tbl rt where rt.supplier_id = st.supplier_id and p.product_id=rt.product_id and rt.stock_id=s.stock_id and p.deleted='0' and st.deleted='0' and s.deleted='0' and rt.deleted ='0' and rt.status='0'";
  $query_res = $link->query($query);
+ if(isset($_GET['msg']))
+ {
+    if($_GET['msg']== 2)
+    {
+        ?>
+
+                            <div class="container">
+                                
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>!!!!!DATA HAS BEEN DELETED SUCESSFULLY!!!!!</strong> 
+                                </div>
+                            </div>
+<?php
+    }
+
+
+ }
+ if(isset($_GET['msg']))
+ {
+    if($_GET['msg']== 2.1)
+    {
+        ?>
+
+                            <div class="container">
+                                
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <button type="button" onclick="diss()" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>!!!!!DATA HAS NOT BEEN DELETED!!!!!</strong> 
+                                </div>
+                            </div>
+<?php
+
+ }
+}
  ?>
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav" style="padding-left:50%;color:red;">
-        
-      <a class="nav-item nav-link active" href="view_return_report.php">VIEW RETURN REPORT <span class="sr-only">(current)</span></a><!--
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-  -->
-      <center><a class="nav-link" href="view_stock_list.php">CART &nbsp<i class="fas fa-file-alt fa-lg  "></i> <span class="badge badge-pill badge-secondary"><?php echo $c;?></span></a>
-    </center>        
-    </div>
-  </div>
-</nav>
+ 
  	<div style="padding: 5%;">
-    <a href="index.php" class='fas fa-arrow-alt-circle-left' style='font-size:48px;color:blue'></a>
-  <center><h1 style="color:blue;background-color:blue;color:white">EXPIRED MEDICINE</h1></center>
+    <a href="dash_expired_medicine.php" class='fas fa-arrow-alt-circle-left' style='font-size:48px;color:blue'></a>
+  <center><h1 style="color:blue;background-color:blue;color:white">RETURNED EXPIRED MEDICINE LIST</h1></center>
  	<table  class="table table-hover  table-bordered" id="example" style="width: 100%;color:white;">
  			<tr class="bg-primary">
                         <th>MEDICINE NAME</th>
@@ -61,7 +76,7 @@ include("dbconnect.php");
  						<th>SUPPLIER</th>
  						<th>QTY</th>
                         <th>PRICE</th>
-                        <th>RETURN STOCK</th>
+                        <th>DELETE</th>
                         
  					</tr>
  			
@@ -70,7 +85,8 @@ include("dbconnect.php");
             {
  	 			while($rows = mysqli_fetch_array($query_res))
  	 			{
- 						$stock_id = $rows['stock_id'];
+ 						$return_stock_id = $rows['return_id'];
+                        $stock_id = $rows['stock_id'];
  						$product_name = $rows["product_name"];
                         $packing = $rows['packing'];
                         $generic_name = $rows['generic_name'];
@@ -81,8 +97,6 @@ include("dbconnect.php");
                         $mrp = $rows['mrp'];
                         $price = $rows['rate'];
                         $status = $rows['status'];
-                        $c = $c + 1;
-                        $_SESSION['count'] = $c;
 
 		 ?>
  			    <tr style="color:black;">
@@ -94,20 +108,8 @@ include("dbconnect.php");
                  <td><?php echo " $supplier_name"; ?></td>
                  <td><?php echo "  $qty"; ?></td>   
                  <td><?php echo " $price"; ?></td>
-                 <?php
-                    if($status == 1){
-                ?>
-                        <td style="background-color:blue;color:red;"><b>ADDED TO LIST...</b></td>
-                <?php
-                    }
-                    else{
-                        ?>
-                      <td><a  onclick="myRemove(<?php echo "$stock_id"; ?>)" class="btn btn-sm btn-primary" style="color:white; ">RETURN STOCK</a> </td>
-                    <?php
-                    }
-                 ?>
                  
-               
+                <td> <a onclick="myDelete(<?php echo "$stock_id"; ?>)"  class = "btn btn-sm btn-danger" style="color:white; ">DELETE STOCK</a></td>
                  
 
                  
@@ -124,9 +126,9 @@ include("dbconnect.php");
 			
 ?>
 </table>
-
+<center><a href="print_stock.php"  class = "btn btn-lg btn-info" style="color:black; ">PRINT</a></center>
 <b id="error"></b>
-</div>
+</div> 
 <?php
 	//include('includes/footer.php');
 
@@ -152,7 +154,7 @@ include('includes/script.php');
 
     function diss(){
 		
-			window.location="view_stock.php";
+			window.location="view_stock_list.php";
 	
 		
     }
@@ -194,7 +196,7 @@ include('includes/script.php');
 	function myDelete(sid){
 		var edit = confirm("ARE YOU SURE TO EDIT DATA");
 		if(edit){
-			window.location="update_stock.php?stock_id="+sid;
+			window.location="update_stock_list.php?stock_id="+sid;
       
      
 		}
