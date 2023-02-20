@@ -48,7 +48,7 @@ include('includes/header.php');
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method = "post" action = "staff_login_process.php">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Enter username">
@@ -57,7 +57,7 @@ include('includes/header.php');
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Enter password">
+						<input class="input100" type="password" name="password" placeholder="Enter password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -69,18 +69,33 @@ include('includes/header.php');
 							</label>
 						</div>
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
+						
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="loginbtn">
 							Login
 						</button>
 					</div>
+					<?php 
+						if(isset($_GET["msg"]))
+						{
+						if($_GET["msg"]=='1')
+						{
+							?>
+							<div class="container">
+								<div class="alert alert-success alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>INVALID USER NAME AND PASSWORD!!!!</strong> 
+								</div>
+							</div>
+							<?php
+
+						}
+						
+								}
+        ?>
+ 					
 				</form>
 			</div>
 		</div>

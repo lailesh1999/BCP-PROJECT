@@ -39,7 +39,8 @@ include("dbconnect.php");
             $c1 = $c1 + 1;
         }
         $query2 = "select  p.product_name,p.generic_name,p.packing,c.category_name,c.category_id,p.product_id from category_tbl c,product_tbl p where   p.category_id=c.category_id and c.deleted='0' and p.deleted='0'";
- $query_res2 = $link->query($query); $query_res = $link->query($query);
+ $query_res2 = $link->query($query2); 
+ //$query_res = $link->query($query);
  $c2 =0;
  while($rows = mysqli_fetch_array($query_res2))
  	 			{             

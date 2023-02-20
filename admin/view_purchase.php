@@ -24,7 +24,7 @@
 
 <?php
 include("dbconnect.php");
-$query = "select p.product_name,pt.quantity,pt.purchase_price,pt.invoice_number,pt.total_price,s.supplier_name,p.product_id,pt.purchase_id,s.supplier_id from product_tbl p,purchase_tbl pt,supplier_tbl s where s.supplier_id = pt.supplier_id and p.product_id=.pt.product_id and s.supplier_id=pt.supplier_id and p.deleted='0' and pt.deleted='0' and s.deleted='0'";
+$query = "select p.product_name,pt.quantity,pt.purchase_price,pt.invoice_number,pt.total_price,s.supplier_name,p.product_id,pt.created_date,pt.purchase_id,s.supplier_id from product_tbl p,purchase_tbl pt,supplier_tbl s where s.supplier_id = pt.supplier_id and p.product_id=.pt.product_id and s.supplier_id=pt.supplier_id and p.deleted='0' and pt.deleted='0' and s.deleted='0'";
 $query_run = $link->query($query);
 
 if(isset($_GET['msg']))
@@ -137,7 +137,7 @@ if(isset($_GET['msg']))
                         <th>PURCHASE PRICE</th>
                         <th>TOTAL PRICE</th>
  						<th>INVOICE NUMBER</th>
-                        <th>EDIT</th>
+ 						<th>CREATED DATE</th>
                         <th>DELETE</th>
  					</tr>
  			</thead>
@@ -163,7 +163,8 @@ if(isset($_GET['msg']))
                  <td><?php echo " $invoice_number"; ?></td>
                  
                 
- 				<td><a  onclick="myEdit(<?php echo "$purchase_id"; ?>)" class="btn btn-primary" style="color:white; ">EDIT</a> </td>
+                  <td><?php echo " $rows[created_date]"; ?></td>
+
  				<td> <a onclick="myFun(<?php echo "$purchase_id"; ?>)"  class = "btn btn-danger" style="color:white; ">DELETE</a></td>
 			</tr>
 	

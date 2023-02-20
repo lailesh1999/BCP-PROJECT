@@ -18,7 +18,7 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-
+<!--
             <li class="nav-item">
               <a class="nav-link" href="add_tax.php">
                 <i class="fas fa-box	 text-red"></i>
@@ -31,7 +31,7 @@
                 <span class="nav-link-text"style="color:red;">VIEW TAX</span>
               </a>
             </li>
-          
+        -->  
             <li class="nav-item">
               <a class="nav-link" href="add_units.php">
                 <i class="fas fas fa-clipboard text-purple"></i>
@@ -101,25 +101,31 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="add_customer.php">
-                <i class="fas fa-fw fa-address-book text-pink"></i>
+                <i class="fas  fa-address-book text-pink"></i>
                 <span class="nav-link-text" style="color:red;">ADD CUSTOMER</span>
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="view_customer.php">
+                <i class="fas fa-address-book text-pink"></i>
+                <span class="nav-link-text" style="color:red;">VIEW CUSTOMER</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="add_staff.php">
-                <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text" style="color:red;">ADD STAFF</span>
+                <i class="fas fa-mobile-alt  text-blue"></i>
+                <span class="nav-link-text" style="color:blue;">ADD STAFF</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="view_staff.php">
-                <i class="fas fa-fw fa-address-book text-pink"></i>
-                <span class="nav-link-text" style="color:red;">VIEW STAFF</span>
+                <i class="fas fa-mobile-alt  text-blue"></i>
+                <span class="nav-link-text" style="color:blue;">VIEW STAFF</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-fw fa-address-book text-red"></i>
+                <i class="fas fa-project-diagram   text-red"></i>
                 <span class="nav-link-text" style="color:red;">LOG OUT</span>
               </a>
             </li>
@@ -129,7 +135,7 @@
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal"><marquee>***********</marquee></span>
+            <span class="docs-normal">***********</span>
           </h6>
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
@@ -155,6 +161,13 @@
               <a class="nav-link" href="view_supplier_report.php">
                 <i class="fas  fas fa-wallet text-blue"></i>
                 <span class="nav-link-text">SUPPLIER REPORT</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="view_return_report.php">
+                <i class="fas  fas fa-wallet text-blue"></i>
+                <span class="nav-link-text">RETURN STOCK REPORT</span>
               </a>
             </li>
           </ul>
